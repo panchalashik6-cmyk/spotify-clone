@@ -48,9 +48,9 @@ import song40 from "../assets/songs/बाज़ीगर मैं बाज़
 // ==========================
 
 import cover1 from "../assets/albums/album1.jpg";
-import cover2 from "../assets/albums/album2.jpg";
+// import cover2 from "../assets/albums/album2.jpg";
 import cover3 from "../assets/albums/album3.jpg";
-import cover4 from "../assets/albums/album4.jpg";
+// import cover4 from "../assets/albums/album4.jpg";
 import cover5 from "../assets/albums/album5.jpg";
 import cover6 from "../assets/albums/album6.jpg";
 import cover7 from "../assets/albums/album7.jpg";
