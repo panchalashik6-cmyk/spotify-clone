@@ -70,3 +70,51 @@
 .playlist-btn svg{
     font-size:22px;
 }
+
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media (max-width:768px){
+
+    .sidebar{
+
+        width:100%;
+        height:auto;
+
+        flex-direction:row;
+
+        justify-content:space-between;
+
+        align-items:center;
+
+        padding:15px;
+
+    }
+
+    .logo{
+        font-size:28px;
+        margin:0;
+    }
+
+    .menu{
+
+        flex-direction:row;
+
+        gap:10px;
+
+    }
+
+    .playlist-section{
+
+        display:none;
+
+    }
+
+    .menu-item span{
+
+        display:none;
+
+    }
+
+}
