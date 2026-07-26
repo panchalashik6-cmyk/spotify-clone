@@ -1,0 +1,44 @@
+.library{
+    padding:30px;
+    color:white;
+    width:100%;
+    min-height:100vh;
+    background:#121212;
+}
+
+.library-section{
+    margin-bottom:40px;
+}
+
+.library-section h2{
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+.empty-box{
+    background:#181818;
+    border-radius:12px;
+    padding:40px;
+    text-align:center;
+}
+
+.empty-box h3{
+    margin-bottom:10px;
+    color:white;
+}
+
+.empty-box p{
+    color:#b3b3b3;
+}
+
+@media(max-width:768px){
+
+.library{
+    padding:20px;
+}
+
+.library-section h2{
+    font-size:22px;
+}
+
+}

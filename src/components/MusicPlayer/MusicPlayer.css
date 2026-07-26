@@ -1,0 +1,185 @@
+.music-player {
+  height: 100px;
+  background: #181818;
+  border-top: 1px solid #333;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 20px;
+  color: white;
+}
+
+/* Left */
+
+.player-left {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.song-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.player-left h4 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.player-left p {
+  font-size: 13px;
+  color: #b3b3b3;
+  margin-top: 3px;
+}
+
+/* Center */
+
+.player-center {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.controls svg {
+  font-size: 20px;
+  color: #b3b3b3;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.controls svg:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Active Shuffle / Repeat */
+
+.active-btn {
+  color: #1db954 !important;
+}
+
+/* Play Button */
+
+.play-btn {
+  width: 45px;
+  height: 45px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+  color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  font-size: 18px;
+
+  transition: 0.3s;
+}
+
+.play-btn:hover {
+  transform: scale(1.08);
+}
+
+/* Progress */
+
+.progress {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress span {
+  font-size: 12px;
+  color: #b3b3b3;
+  width: 40px;
+}
+
+.progress input {
+  flex: 1;
+  cursor: pointer;
+}
+
+/* Right */
+
+.player-right {
+  width: 25%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-right svg {
+  font-size: 18px;
+}
+
+.player-right input {
+  width: 120px;
+  cursor: pointer;
+}
+
+/* Range */
+
+input[type="range"] {
+  accent-color: #1db954;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .player-left {
+    width: 35%;
+  }
+
+  .player-center {
+    width: 40%;
+  }
+
+  .player-right {
+    width: 25%;
+  }
+}
+
+@media (max-width: 768px) {
+  .music-player {
+    height: auto;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .player-left,
+  .player-center,
+  .player-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .player-right {
+    justify-content: center;
+  }
+
+  .controls {
+    gap: 18px;
+  }
+}

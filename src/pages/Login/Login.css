@@ -1,0 +1,92 @@
+.login{
+    width:100%;
+    height:100vh;
+
+    background:#121212;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+
+    width:400px;
+
+    background:#181818;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:15px;
+}
+
+.login-box h1{
+    color:#1DB954;
+    text-align:center;
+}
+
+.login-box h2{
+    color:white;
+    text-align:center;
+}
+
+.login-box input{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:16px;
+}
+
+.login-box button{
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+}
+
+.login-box button:first-of-type{
+
+    background:#1DB954;
+
+    color:white;
+}
+
+.google-btn{
+
+    background:white;
+}
+
+.login-box p{
+
+    color:white;
+
+    text-align:center;
+}
+
+.login-box span{
+
+    color:#1DB954;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}

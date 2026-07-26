@@ -1,0 +1,35 @@
+.album-page{
+    padding:30px;
+    color:white;
+}
+
+.album-header{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-bottom:40px;
+}
+
+.album-cover{
+    width:220px;
+    border-radius:12px;
+}
+
+.album-song-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+@media(max-width:768px){
+
+.album-header{
+flex-direction:column;
+text-align:center;
+}
+
+.album-cover{
+width:180px;
+}
+
+}

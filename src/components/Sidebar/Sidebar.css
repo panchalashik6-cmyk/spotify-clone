@@ -1,0 +1,72 @@
+.sidebar{
+    width:280px;
+    background:#000;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.logo{
+    color:#1DB954;
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:40px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:#b3b3b3;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+
+    text-decoration: none;   /* Add this */
+}
+.menu-item:hover{
+    background:#181818;
+    color:#fff;
+}
+
+.menu-item.active{
+    background:#181818;
+    color:#fff;
+}
+
+.icon{
+    font-size:24px;
+}
+
+.playlist-section{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.playlist-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#181818;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.playlist-btn:hover{
+    background:#282828;
+}
+
+.playlist-btn svg{
+    font-size:22px;
+}

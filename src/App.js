@@ -1,24 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
+import Sidebar from "./components/Sidebar/Sidebar";
+import Navbar from "./components/Navbar/Navbar";
+import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
+import Queue from "./components/Queue/Queue";
+import PrivateRoute from "./components/PrivateRoute";
+
+import Home from "./pages/Home/Home";
+import Search from "./pages/Search/Search";
+import Album from "./pages/Album/Album";
+import Playlist from "./pages/Playlist/Playlist";
+import Library from "./pages/Library/Library";
+import Login from "./pages/Login/Login";
+
+
+function SpotifyLayout() {
+  return (
+    <div className="app">
+      <div className="main-layout">
+        <Sidebar />
+
+        <div className="content">
+          <Navbar />
+<Routes>
+  <Route index element={<Navigate to="/home" replace />} />
+
+  <Route path="/home" element={<Home />} />
+  <Route path="/search" element={<Search />} />
+  <Route path="/album/:id" element={<Album />} />
+  <Route path="/playlist/:id" element={<Playlist />} />
+  <Route path="/library" element={<Library />} />
+</Routes>
+        </div>
+
+        <Queue />
+      </div>
+
+      <MusicPlayer />
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <SpotifyLayout />
+            </PrivateRoute>
+          }
+        />
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
