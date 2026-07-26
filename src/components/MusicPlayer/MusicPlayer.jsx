@@ -17,7 +17,6 @@ const MusicPlayer = () => {
   const audioRef = useRef(null);
 
   const {
-    songs,
     currentSong,
     currentIndex,
     isPlaying,
