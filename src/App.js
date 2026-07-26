@@ -18,6 +18,7 @@ import Album from "./pages/Album/Album";
 import Playlist from "./pages/Playlist/Playlist";
 import Library from "./pages/Library/Library";
 import Login from "./pages/Login/Login";
+import Artist from "./pages/Artist/Artist";
 
 
 function SpotifyLayout() {
@@ -34,8 +35,10 @@ function SpotifyLayout() {
   <Route path="/home" element={<Home />} />
   <Route path="/search" element={<Search />} />
   <Route path="/album/:id" element={<Album />} />
-  <Route path="/playlist/:id" element={<Playlist />} />
+<Route path="/playlist" element={<Playlist />} />
+<Route path="/playlist/:id" element={<Playlist />} />
   <Route path="/library" element={<Library />} />
+  <Route path="/artist/:id" element={<Artist />} />
 </Routes>
         </div>
 

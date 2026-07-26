@@ -29,15 +29,15 @@ const albums = [
   },
   {
     id: 2,
-    title: "Dhurnandhar revenge",
-    artist: "Ranvir singh",
+    title: "Dhurandhar Revenge",
+    artist: "Ranveer Singh",
     image: album2,
     songs: [3, 4],
   },
   {
     id: 3,
     title: "Way Ahead",
-    artist: "Sidhu moose wala",
+    artist: "Sidhu Moose Wala",
     image: album3,
     songs: [5, 6],
   },
@@ -50,7 +50,7 @@ const albums = [
   },
   {
     id: 5,
-    title: "Papun Hits",
+    title: "Punjabi Hits",
     artist: "Spotify",
     image: album5,
     songs: [2, 4],
@@ -85,15 +85,14 @@ const albums = [
   },
   {
     id: 10,
-    title: "90's songs",
+    title: "90's Songs",
     artist: "Spotify",
     image: album10,
     songs: [1, 2, 3],
   },
-
-    {
+  {
     id: 11,
-    title: "Gujrati Hits",
+    title: "Gujarati Hits",
     artist: "Spotify",
     image: album11,
     songs: [7, 8],

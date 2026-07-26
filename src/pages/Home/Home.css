@@ -1,221 +1,528 @@
-/* ===========================
+/* ==========================================
    HOME
-=========================== */
+========================================== */
 
-.home {
-  padding: 30px;
-  color: white;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #3b3b3b, #121212);
+.home{
+    flex:1;
+    min-height:100vh;
+    padding:30px;
+    overflow-y:auto;
+
+    background:
+    linear-gradient(
+        180deg,
+        #4d4d4d 0%,
+        #303030 15%,
+        #1d1d1d 35%,
+        #121212 60%
+    );
+
+    color:#fff;
+
+    scroll-behavior:smooth;
 }
 
-/* ===========================
+/* ==========================================
    HEADER
-=========================== */
+========================================== */
 
-.home-header {
-  margin-bottom: 35px;
+.home-header{
+
+    margin-bottom:40px;
+
 }
 
-.home-title {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.home-title{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    letter-spacing:-1px;
+
 }
 
-.home-subtitle {
-  color: #b3b3b3;
-  font-size: 17px;
+.home-subtitle{
+
+    color:#b3b3b3;
+
+    font-size:17px;
+
 }
 
-/* ===========================
+/* ==========================================
    QUICK ACCESS
-=========================== */
+========================================== */
 
-.quick-access {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 50px;
+.quick-access{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:55px;
+
 }
 
-.quick-card {
-  background: #181818;
-  border-radius: 12px;
+.quick-card{
 
-  display: flex;
-  align-items: center;
-  gap: 18px;
+    display:flex;
 
-  padding: 18px;
+    align-items:center;
 
-  cursor: pointer;
+    gap:18px;
 
-  transition: 0.3s;
+    padding:18px;
+
+    background:#181818;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    overflow:hidden;
+
 }
 
-.quick-card:hover {
-  background: #282828;
-  transform: translateY(-3px);
+.quick-card:hover{
+
+    background:#282828;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.35);
+
 }
 
-.quick-card span {
-  font-size: 32px;
+.quick-card span{
+
+    font-size:34px;
+
 }
 
-.quick-card h3 {
-  font-size: 18px;
-  font-weight: 600;
+.quick-card h3{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:white;
+
 }
 
-/* ===========================
+/* ==========================================
    SECTION
-=========================== */
+========================================== */
 
-.section {
-  margin-top: 50px;
+.section{
+
+    margin-bottom:55px;
+
+    animation:fadeUp .5s ease;
+
 }
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.section-header{
 
-  margin-bottom: 20px;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
 }
 
-.section-header h2 {
-  font-size: 28px;
-  font-weight: 700;
+.section-header h2{
+
+    font-size:28px;
+
+    font-weight:700;
+
 }
 
-.section-header span {
-  color: #b3b3b3;
-  cursor: pointer;
-  transition: 0.3s;
+.show-btn{
+
+    background:none;
+
+    border:none;
+
+    color:#b3b3b3;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
 }
 
-.section-header span:hover {
-  color: white;
+.show-btn:hover{
+
+    color:#fff;
+
 }
 
-/* ===========================
+/* ==========================================
    ALBUM LIST
-=========================== */
+========================================== */
 
-.album-list {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.album-list{
+
+    display:flex;
+
+    gap:22px;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    scroll-behavior:smooth;
+
+    padding-bottom:12px;
+
 }
 
-/* ===========================
+.album-list::-webkit-scrollbar{
+
+    height:7px;
+
+}
+
+.album-list::-webkit-scrollbar-thumb{
+
+    background:#333;
+
+    border-radius:20px;
+
+}
+
+.album-list::-webkit-scrollbar-thumb:hover{
+
+    background:#1DB954;
+
+}
+
+/* ==========================================
    SONG LIST
-=========================== */
+========================================== */
 
-.song-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.song-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
 }
 
-/* ===========================
+/* ==========================================
    SCROLLBAR
-=========================== */
+========================================== */
 
-.home::-webkit-scrollbar {
-  width: 8px;
+.home::-webkit-scrollbar{
+
+    width:8px;
+
 }
 
-.home::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 10px;
+.home::-webkit-scrollbar-thumb{
+
+    background:#3b3b3b;
+
+    border-radius:20px;
+
 }
 
-.home::-webkit-scrollbar-thumb:hover {
-  background: #1db954;
+.home::-webkit-scrollbar-thumb:hover{
+
+    background:#1DB954;
+
 }
 
-/* ===========================
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/* ==========================================
    TABLET
-=========================== */
+========================================== */
 
-@media (max-width: 992px) {
+@media (max-width:992px){
 
-  .quick-access {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.home{
 
-  .home-title {
-    font-size: 40px;
-  }
+    padding:25px;
 
 }
 
-/* ===========================
+.home-title{
+
+    font-size:40px;
+
+}
+
+.home-subtitle{
+
+    font-size:16px;
+
+}
+
+.quick-access{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.section-header h2{
+
+    font-size:24px;
+
+}
+
+.album-list{
+
+    gap:18px;
+
+}
+
+}
+
+/* ==========================================
    MOBILE
-=========================== */
+========================================== */
 
 @media (max-width:768px){
 
-  .home{
+.home{
+
     padding:20px;
-  }
-
-  .home-title{
-    font-size:32px;
-  }
-
-  .home-subtitle{
-    font-size:15px;
-  }
-
-  .quick-access{
-    grid-template-columns:1fr;
-  }
-
-  .quick-card{
-    padding:15px;
-  }
-
-  .quick-card h3{
-    font-size:16px;
-  }
-
-  .section-header h2{
-    font-size:22px;
-  }
-
-  .album-list{
-    justify-content:center;
-  }
 
 }
 
-/* ===========================
+.home-title{
+
+    font-size:32px;
+
+}
+
+.home-subtitle{
+
+    font-size:15px;
+
+}
+
+.quick-access{
+
+    grid-template-columns:1fr;
+
+    gap:14px;
+
+}
+
+.quick-card{
+
+    padding:15px;
+
+    gap:15px;
+
+}
+
+.quick-card span{
+
+    font-size:28px;
+
+}
+
+.quick-card h3{
+
+    font-size:16px;
+
+}
+
+.section{
+
+    margin-bottom:40px;
+
+}
+
+.section-header{
+
+    margin-bottom:16px;
+
+}
+
+.section-header h2{
+
+    font-size:22px;
+
+}
+
+.show-btn{
+
+    font-size:13px;
+
+}
+
+.album-list{
+
+    gap:15px;
+
+    padding-bottom:10px;
+
+}
+
+.song-list{
+
+    gap:10px;
+
+}
+
+}
+
+/* ==========================================
    SMALL MOBILE
-=========================== */
+========================================== */
 
 @media (max-width:480px){
 
-  .home{
+.home{
+
     padding:15px;
-  }
 
-  .home-title{
+}
+
+.home-title{
+
     font-size:28px;
-  }
 
-  .quick-card{
+}
+
+.home-subtitle{
+
+    font-size:14px;
+
+}
+
+.quick-card{
+
+    padding:12px;
+
     gap:12px;
-  }
 
-  .quick-card span{
-    font-size:26px;
-  }
+}
 
-  .quick-card h3{
+.quick-card span{
+
+    font-size:24px;
+
+}
+
+.quick-card h3{
+
     font-size:15px;
-  }
+
+}
+
+.section{
+
+    margin-bottom:30px;
+
+}
+
+.section-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+}
+
+.section-header h2{
+
+    font-size:20px;
+
+}
+
+.album-list{
+
+    gap:12px;
+
+}
+
+.song-list{
+
+    gap:8px;
+
+}
+
+}
+
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media (min-width:1400px){
+
+.home{
+
+    padding:40px;
+
+}
+
+.quick-access{
+
+    grid-template-columns:repeat(4,1fr);
+
+}
+
+.section-header h2{
+
+    font-size:30px;
+
+}
+
+}
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection{
+
+    background:#1DB954;
+
+    color:#fff;
 
 }

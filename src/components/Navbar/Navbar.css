@@ -1,152 +1,599 @@
+/* ===================================
+   NAVBAR
+=================================== */
+
 .navbar{
+    position:sticky;
+    top:0;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 25px;
+
+    width:100%;
+
+    padding:15px 24px;
+
     background:#121212;
-    position:sticky;
-    top:0;
-    z-index:100;
+
+    z-index:900;
+
+    border-bottom:1px solid #222;
 }
 
 .navbar-left{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:14px;
 }
 
 .nav-btn{
     width:42px;
     height:42px;
+
     border:none;
     border-radius:50%;
+
     background:#000;
     color:#fff;
-    cursor:pointer;
-    font-size:16px;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.nav-btn:hover{
+    background:#282828;
 }
 
 .search-box{
+
+    width:380px;
+    height:48px;
+
     display:flex;
     align-items:center;
-    background:#242424;
-    border-radius:30px;
+
     padding:0 18px;
-    width:360px;
-    height:48px;
+
+    background:#242424;
+
+    border-radius:30px;
+
+    transition:.3s;
+}
+
+.search-box:hover{
+    background:#2f2f2f;
 }
 
 .search-box svg{
+
     color:#b3b3b3;
+
     font-size:20px;
+
 }
 
 .search-box input{
+
     flex:1;
+
     margin-left:12px;
+
+    background:none;
+
     border:none;
+
     outline:none;
-    background:transparent;
+
     color:white;
+
     font-size:15px;
+
 }
 
 .search-box input::placeholder{
+
     color:#b3b3b3;
+
 }
 
+/* ===========================
+   RIGHT
+=========================== */
+
 .navbar-right{
+
     display:flex;
+
     align-items:center;
-    gap:15px;
+
+    gap:14px;
+
 }
 
 .premium-btn{
-    background:#fff;
-    color:#000;
+
+    background:white;
+
+    color:black;
+
     border:none;
-    padding:12px 22px;
+
+    padding:11px 22px;
+
     border-radius:25px;
+
     font-weight:bold;
+
     cursor:pointer;
+
+    transition:.3s;
+
 }
 
-.install-btn{
-    background:#000;
-    color:#fff;
-    border:none;
-    padding:12px 18px;
-    border-radius:25px;
-    cursor:pointer;
+.premium-btn:hover{
+
+    transform:scale(1.04);
+
 }
 
 .bell-btn{
+
     width:42px;
+
     height:42px;
+
     border:none;
+
     border-radius:50%;
+
     background:#000;
+
     color:white;
-    cursor:pointer;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
+    cursor:pointer;
+
 }
 
 .profile-img{
+
     width:42px;
+
     height:42px;
+
     border-radius:50%;
+
     object-fit:cover;
-    cursor:pointer;
-    border:2px solid #1db954;
+
+    border:2px solid #1DB954;
+
 }
 
 .logout-btn{
-    background:#1db954;
-    color:white;
+
     border:none;
-    padding:11px 22px;
+
+    background:#1DB954;
+
+    color:white;
+
+    padding:11px 20px;
+
     border-radius:25px;
+
     cursor:pointer;
+
     font-weight:600;
+
 }
 
 .logout-btn:hover{
-    background:#18a64d;
-}
 
-@media(max-width:1200px){
+    background:#179347;
+
+}
+/* ===================================
+   TABLET RESPONSIVE
+=================================== */
+
+@media (max-width:1200px){
+
+.navbar{
+
+    padding:14px 18px;
+
+}
 
 .search-box{
-    width:260px;
-}
 
-}
+    width:280px;
 
-@media(max-width:992px){
-
-.search-box{
-    display:none;
 }
 
 .premium-btn{
-    display:none;
-}
 
-}
+    padding:10px 18px;
 
-@media(max-width:768px){
-
-.install-btn{
-    display:none;
 }
 
 .logout-btn{
+
     padding:10px 18px;
+
 }
+
+}
+
+
+/* ===================================
+   TABLET
+=================================== */
+
+@media (max-width:992px){
+
+.navbar{
+
+    padding:12px 16px;
+
+}
+
+.navbar-left{
+
+    gap:10px;
+
+}
+
+.nav-btn{
+
+    width:38px;
+    height:38px;
+
+    font-size:14px;
+
+}
+
+.search-box{
+
+    width:220px;
+    height:42px;
+
+}
+
+.search-box input{
+
+    font-size:14px;
+
+}
+
+.premium-btn{
+
+    display:none;
+
+}
+
+.profile-img{
+
+    width:38px;
+    height:38px;
+
+}
+
+.logout-btn{
+
+    padding:9px 16px;
+
+    font-size:14px;
+
+}
+
+.bell-btn{
+
+    width:38px;
+    height:38px;
+
+}
+
+}
+
+
+/* ===================================
+   SMALL TABLET
+=================================== */
+
+@media (max-width:850px){
+
+.search-box{
+
+    display:none;
+
+}
+
+.navbar{
+
+    justify-content:space-between;
+
+}
+
+.navbar-right{
+
+    gap:10px;
+
+}
+
+}
+/* ===================================
+   MOBILE RESPONSIVE
+=================================== */
+
+@media (max-width:768px){
+
+.navbar{
+
+    position:sticky;
+    top:60px;
+
+    padding:12px 15px;
+
+    border-radius:0;
+
+    z-index:900;
+
+}
+
+.navbar-left{
+
+    flex:1;
+
+}
+
+.nav-btn{
+
+    display:none;
+
+}
+
+.search-box{
+
+    display:flex;
+
+    width:100%;
+
+    height:42px;
+
+    padding:0 14px;
+
+}
+
+.search-box svg{
+
+    font-size:18px;
+
+}
+
+.search-box input{
+
+    font-size:14px;
+
+}
+
+.navbar-right{
+
+    gap:8px;
+
+}
+
+.bell-btn{
+
+    width:36px;
+    height:36px;
+
+    font-size:15px;
+
+}
+
+.profile-img{
+
+    width:36px;
+    height:36px;
+
+}
+
+.logout-btn{
+
+    display:none;
+
+}
+
+.premium-btn{
+
+    display:none;
+
+}
+
+}
+
+
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
+@media (max-width:480px){
+
+.navbar{
+
+    padding:10px 12px;
+
+}
+
+.search-box{
+
+    height:40px;
+
+    border-radius:20px;
+
+}
+
+.search-box input{
+
+    font-size:13px;
+
+}
+
+.search-box svg{
+
+    font-size:17px;
+
+}
+
+.bell-btn{
+
+    width:34px;
+    height:34px;
+
+}
+
+.profile-img{
+
+    width:34px;
+    height:34px;
+
+}
+
+}
+/* ===================================
+   FINAL POLISH
+=================================== */
+
+.nav-btn,
+.bell-btn,
+.logout-btn,
+.premium-btn,
+.profile-img{
+    transition:all .3s ease;
+}
+
+.nav-btn:hover,
+.bell-btn:hover{
+    background:#2a2a2a;
+    transform:scale(1.05);
+}
+
+.profile-img:hover{
+    transform:scale(1.08);
+    border-color:#1ed760;
+}
+
+.logout-btn:hover{
+    background:#1ed760;
+    transform:translateY(-2px);
+}
+
+.premium-btn:hover{
+    background:#f5f5f5;
+    transform:translateY(-2px);
+}
+
+.search-box:focus-within{
+    outline:2px solid #1db954;
+    background:#2b2b2b;
+}
+
+/* ===================================
+   SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#121212;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#3a3a3a;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#555;
+}
+
+/* ===================================
+   LANDSCAPE MODE
+=================================== */
+
+@media (max-width:768px) and (orientation:landscape){
+
+.navbar{
+
+    top:55px;
+
+}
+
+.search-box{
+
+    width:220px;
+
+}
+
+}
+
+/* ===================================
+   SAFE AREA
+=================================== */
+
+@supports (padding:max(0px)){
+
+.navbar{
+
+    padding-left:max(15px, env(safe-area-inset-left));
+    padding-right:max(15px, env(safe-area-inset-right));
+
+}
+
+}
+
+/* ===================================
+   TOUCH EFFECT
+=================================== */
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+.profile-img:active{
+
+    transform:scale(.95);
+
+}
+
+/* ===================================
+   SMOOTH ANIMATION
+=================================== */
+
+.navbar *,
+.search-box,
+.nav-btn,
+.profile-img,
+.bell-btn,
+.logout-btn,
+.premium-btn{
+
+    transition:all .25s ease;
 
 }

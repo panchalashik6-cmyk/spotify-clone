@@ -1,120 +1,794 @@
+/* ==========================
+   SIDEBAR
+========================== */
+
 .sidebar{
-    width:280px;
+    width:290px;
+    height:100vh;
     background:#000;
-    padding:18px;
+    color:#fff;
+
     display:flex;
     flex-direction:column;
+
+    padding:18px;
+
+    overflow:hidden;
+
+    border-right:1px solid #202020;
+}
+
+.sidebar-top{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.sidebar-header{
+    display:flex;
     justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
 }
 
 .logo{
     color:#1DB954;
-    font-size:32px;
-    font-weight:bold;
-    margin-bottom:40px;
+    font-size:30px;
+    font-weight:700;
 }
 
+.close-btn{
+    display:none;
+}
+
+.mobile-header{
+    display:none;
+}
+
+.overlay{
+    display:none;
+}
+
+/* ==========================
+   MENU
+========================== */
+
 .menu{
+
     display:flex;
+
     flex-direction:column;
-    gap:15px;
+
+    gap:10px;
+
 }
 
 .menu-item{
+
     display:flex;
+
     align-items:center;
-    gap:15px;
+
+    gap:14px;
+
+    text-decoration:none;
+
     color:#b3b3b3;
-    padding:12px;
+
+    padding:13px 15px;
+
     border-radius:10px;
-    cursor:pointer;
+
     transition:.3s;
 
-    text-decoration: none;   /* Add this */
+    font-size:15px;
+
 }
+
 .menu-item:hover{
+
     background:#181818;
+
     color:#fff;
+
 }
 
 .menu-item.active{
-    background:#181818;
+
+    background:#202020;
+
     color:#fff;
+
 }
 
 .icon{
+
     font-size:24px;
+
 }
 
+/* ==========================
+   PLAYLIST
+========================== */
+
 .playlist-section{
+
+    margin-top:30px;
+
     display:flex;
+
     flex-direction:column;
-    gap:15px;
+
+    flex:1;
+
+    min-height:0;
+
 }
 
 .playlist-btn{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
+    text-decoration:none;
+
+    color:#fff;
+
     background:#181818;
+
     padding:14px;
+
     border-radius:10px;
-    cursor:pointer;
+
+    margin-bottom:12px;
+
     transition:.3s;
+
 }
 
 .playlist-btn:hover{
+
     background:#282828;
+
 }
 
 .playlist-btn svg{
+
     font-size:22px;
+
 }
 
-/* ===========================
-   Mobile Responsive
-=========================== */
+.playlist-title{
+
+    font-size:13px;
+
+    color:#9a9a9a;
+
+    margin:15px 0 10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+/* ==========================
+   PLAYLIST LIST
+========================== */
+
+.playlist-list{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    padding-right:4px;
+
+}
+
+.playlist-list::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.playlist-list::-webkit-scrollbar-thumb{
+
+    background:#3d3d3d;
+
+    border-radius:20px;
+
+}
+
+.playlist-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px;
+
+    text-decoration:none;
+
+    color:#b3b3b3;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.playlist-item:hover{
+
+    background:#202020;
+
+    color:#fff;
+
+}
+
+.active-playlist{
+
+    background:#1DB954;
+
+    color:#fff;
+
+}
+
+.active-playlist small{
+
+    color:#fff;
+
+}
+
+.playlist-item svg{
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+.playlist-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    flex:1;
+
+}
+
+.playlist-name{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.playlist-info small{
+
+    color:#9a9a9a;
+
+    font-size:12px;
+
+    margin-top:3px;
+
+}
+
+.empty-playlist{
+
+    text-align:center;
+
+    color:#888;
+
+    padding:20px 10px;
+
+    background:#181818;
+
+    border-radius:10px;
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:1024px){
+
+.sidebar{
+
+    width:240px;
+
+}
+
+.logo{
+
+    font-size:26px;
+
+}
+
+.menu-item{
+
+    padding:12px;
+
+}
+
+.playlist-btn{
+
+    padding:12px;
+
+}
+
+}
+
+/* ==========================
+   SMALL DESKTOP
+========================== */
+
+@media (max-height:700px){
+
+.playlist-section{
+
+    margin-top:20px;
+
+}
+
+.playlist-title{
+
+    margin:10px 0;
+
+}
+
+}
+
+/* ==========================
+   MOBILE HEADER
+========================== */
 
 @media (max-width:768px){
 
-    .sidebar{
+.mobile-header{
 
-        width:100%;
-        height:auto;
+    position:fixed;
 
-        flex-direction:row;
+    top:0;
 
-        justify-content:space-between;
+    left:0;
 
-        align-items:center;
+    width:100%;
 
-        padding:15px;
+    height:60px;
 
-    }
+    background:#000;
 
-    .logo{
-        font-size:28px;
-        margin:0;
-    }
+    display:flex;
 
-    .menu{
+    justify-content:space-between;
 
-        flex-direction:row;
+    align-items:center;
 
-        gap:10px;
+    padding:0 18px;
 
-    }
+    border-bottom:1px solid #222;
 
-    .playlist-section{
+    z-index:1100;
 
-        display:none;
+}
 
-    }
+.mobile-logo{
 
-    .menu-item span{
+    color:#1DB954;
 
-        display:none;
+    font-size:24px;
 
-    }
+    font-weight:700;
+
+}
+
+.menu-btn{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:none;
+
+    border:none;
+
+    color:#fff;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+}
+
+/* ==========================
+   OVERLAY
+========================== */
+
+.overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:1190;
+
+}
+
+.overlay.show-overlay{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/* ==========================
+   SIDEBAR DRAWER
+========================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:-100%;
+
+    width:290px;
+
+    max-width:85%;
+
+    height:100vh;
+
+    background:#000;
+
+    z-index:1200;
+
+    transition:left .35s ease;
+
+    box-shadow:4px 0 25px rgba(0,0,0,.45);
+
+}
+
+.sidebar.show{
+
+    left:0;
+
+}
+
+.close-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:transparent;
+
+    color:#fff;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+.close-btn:hover{
+
+    background:#1f1f1f;
+
+}
+
+/* ==========================
+   MOBILE MENU
+========================== */
+
+.menu{
+
+    gap:14px;
+
+}
+
+.menu-item{
+
+    font-size:16px;
+
+    padding:14px;
+
+}
+
+.menu-item span{
+
+    display:block;
+
+}
+
+.icon{
+
+    font-size:25px;
+
+}
+
+/* ==========================
+   MOBILE PLAYLIST
+========================== */
+
+.playlist-btn{
+
+    padding:15px;
+
+}
+
+.playlist-item{
+
+    padding:13px;
+
+}
+
+.playlist-name{
+
+    font-size:15px;
+
+}
+
+.playlist-info small{
+
+    font-size:12px;
+
+}
+
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media (max-width:480px){
+
+.sidebar{
+
+    width:250px;
+
+    padding:16px;
+
+}
+
+.logo{
+
+    font-size:26px;
+
+}
+
+.mobile-header{
+
+    height:56px;
+
+    padding:0 14px;
+
+}
+
+.mobile-logo{
+
+    font-size:22px;
+
+}
+
+.menu-btn{
+
+    font-size:28px;
+
+}
+
+.menu-item{
+
+    padding:12px;
+
+    gap:10px;
+
+    font-size:15px;
+
+}
+
+.icon{
+
+    font-size:22px;
+
+}
+
+.playlist-btn{
+
+    padding:12px;
+
+}
+
+.playlist-item{
+
+    padding:11px;
+
+}
+
+.playlist-name{
+
+    font-size:14px;
+
+}
+
+.playlist-info small{
+
+    font-size:11px;
+
+}
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+.sidebar::-webkit-scrollbar,
+.playlist-list::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.sidebar::-webkit-scrollbar-track,
+.playlist-list::-webkit-scrollbar-track{
+
+    background:#000;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.playlist-list::-webkit-scrollbar-thumb{
+
+    background:#3a3a3a;
+
+    border-radius:20px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.playlist-list::-webkit-scrollbar-thumb:hover{
+
+    background:#5a5a5a;
+
+}
+
+/* Firefox */
+
+.sidebar,
+.playlist-list{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:#3a3a3a transparent;
+
+}
+
+/* ==========================
+   SAFE AREA
+========================== */
+
+@supports (padding:max(0px)){
+
+.sidebar{
+
+    padding-bottom:max(20px, env(safe-area-inset-bottom));
+
+}
+
+.mobile-header{
+
+    padding-top:max(0px, env(safe-area-inset-top));
+
+}
+
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+.sidebar,
+.menu-item,
+.playlist-btn,
+.playlist-item,
+.close-btn,
+.menu-btn{
+
+    transition:all .3s ease;
+
+}
+
+.menu-item:hover,
+.playlist-item:hover{
+
+    transform:translateX(4px);
+
+}
+
+.playlist-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.menu-item:active,
+.playlist-item:active,
+.playlist-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================
+   LARGE DESKTOP
+========================== */
+
+@media (min-width:1400px){
+
+.sidebar{
+
+    width:310px;
+
+}
+
+.logo{
+
+    font-size:34px;
+
+}
 
 }

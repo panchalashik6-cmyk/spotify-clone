@@ -1,0 +1,355 @@
+/* ==========================================
+   LIKED SONGS PAGE
+========================================== */
+
+.liked-page{
+    flex:1;
+    min-height:100vh;
+    padding:30px;
+    color:#fff;
+    overflow-y:auto;
+    background:linear-gradient(
+        180deg,
+        #5b21b6 0%,
+        #3b1d72 20%,
+        #181818 55%,
+        #121212 100%
+    );
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.liked-header{
+    display:flex;
+    align-items:flex-end;
+    gap:30px;
+    margin-bottom:40px;
+}
+
+.liked-cover{
+    width:220px;
+    height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:90px;
+    color:white;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        #7c3aed,
+        #2563eb
+    );
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+.liked-header p{
+    color:#ddd;
+    font-size:14px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.liked-header h1{
+    font-size:62px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.liked-header span{
+    color:#b3b3b3;
+    font-size:16px;
+}
+
+/* ==========================================
+   SONG LIST
+========================================== */
+
+.liked-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.liked-song{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.liked-song:hover{
+    background:#282828;
+}
+
+.liked-song-info{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex:1;
+}
+
+.liked-song-info img{
+    width:60px;
+    height:60px;
+    border-radius:8px;
+    object-fit:cover;
+}
+
+.liked-song-info h3{
+    font-size:18px;
+    font-weight:600;
+    color:#fff;
+    margin-bottom:5px;
+}
+
+.liked-song-info p{
+    font-size:14px;
+    color:#b3b3b3;
+}
+
+/* ==========================================
+   PLAY BUTTON
+========================================== */
+
+.play-song-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:#1DB954;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.3s;
+    font-size:16px;
+}
+
+.play-song-btn:hover{
+    transform:scale(1.1);
+}
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+.empty-liked{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    margin-top:80px;
+}
+
+.empty-icon{
+    font-size:70px;
+    color:#1DB954;
+    margin-bottom:20px;
+}
+
+.empty-liked h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.empty-liked p{
+    color:#b3b3b3;
+    font-size:16px;
+    max-width:420px;
+}
+
+/* ==========================================
+   TABLET RESPONSIVE
+========================================== */
+
+@media (max-width:992px){
+
+    .liked-page{
+        padding:25px;
+    }
+
+    .liked-header{
+        gap:20px;
+    }
+
+    .liked-cover{
+        width:180px;
+        height:180px;
+        font-size:70px;
+    }
+
+    .liked-header h1{
+        font-size:48px;
+    }
+
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width:768px){
+
+    .liked-page{
+        padding:20px;
+    }
+
+    .liked-header{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    .liked-cover{
+        width:180px;
+        height:180px;
+        font-size:70px;
+    }
+
+    .liked-header h1{
+        font-size:36px;
+    }
+
+    .liked-song{
+        padding:12px;
+    }
+
+    .liked-song-info{
+        gap:12px;
+    }
+
+    .liked-song-info img{
+        width:50px;
+        height:50px;
+    }
+
+    .liked-song-info h3{
+        font-size:16px;
+    }
+
+    .liked-song-info p{
+        font-size:13px;
+    }
+
+    .play-song-btn{
+        width:42px;
+        height:42px;
+        font-size:14px;
+    }
+
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+    .liked-page{
+        padding:15px;
+    }
+
+    .liked-cover{
+        width:150px;
+        height:150px;
+        font-size:60px;
+    }
+
+    .liked-header h1{
+        font-size:28px;
+    }
+
+    .liked-song-info img{
+        width:45px;
+        height:45px;
+    }
+
+    .liked-song-info h3{
+        font-size:15px;
+    }
+
+    .liked-song-info p{
+        font-size:12px;
+    }
+
+    .play-song-btn{
+        width:38px;
+        height:38px;
+        font-size:13px;
+    }
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+.liked-page::-webkit-scrollbar{
+    width:8px;
+}
+
+.liked-page::-webkit-scrollbar-thumb{
+    background:#3a3a3a;
+    border-radius:20px;
+}
+
+.liked-page::-webkit-scrollbar-thumb:hover{
+    background:#1DB954;
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+.liked-header{
+    animation:fadeDown .5s ease;
+}
+
+.liked-song{
+    animation:fadeUp .4s ease;
+}
+
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================================
+   TEXT SELECTION
+========================================== */
+
+::selection{
+    background:#1DB954;
+    color:#fff;
+}

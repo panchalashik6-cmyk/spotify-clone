@@ -173,12 +173,13 @@ const MusicPlayer = () => {
             style={{ cursor: "pointer" }}
           />
 
-          <button
-            className="play-btn"
-            onClick={togglePlay}
-          >
-            {isPlaying ? <FaPause /> : <FaPlay />}
-          </button>
+       <button className="play-btn" onClick={togglePlay}>
+  {isPlaying ? (
+    <FaPause size={22} color="#000" />
+  ) : (
+    <FaPlay size={22} color="#000" style={{ marginLeft: "2px" }} />
+  )}
+</button>
 
           <FaStepForward
             onClick={nextSong}

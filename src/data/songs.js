@@ -69,13 +69,13 @@ import cover19 from "../assets/albums/album19.jpg";
 import cover20 from "../assets/albums/album20.jpg";
 
 const songs = [
-  {
-    id: 1,
-    title: "",
-    artist: "Sidhu Moose Wala",
-    image: cover3,
-    audio: song1,
-  },
+ {
+  id: 1,
+  title: "295",
+  artist: "Sidhu Moose Wala",
+  image: cover3,
+  audio: song1,
+},
   {
     id: 2,
     title: "52 Bars",

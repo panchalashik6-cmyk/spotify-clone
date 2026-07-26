@@ -30,11 +30,12 @@ const SongCard = ({ song }) => {
   };
 
   const isLiked = likedSongs.some(
-  (item) => item.id === song.id
-);
+    (item) => item.id === song.id
+  );
 
   return (
     <div className="song-card">
+      {/* Left */}
       <div className="song-left">
         <img
           src={song.image}
@@ -48,47 +49,74 @@ const SongCard = ({ song }) => {
         </div>
       </div>
 
+      {/* Right */}
       <div className="song-actions">
+
+        {/* Like */}
         <button
-          className="icon-btn"
-    onClick={() => toggleLike(song)}
+          className={`icon-btn ${isLiked ? "liked" : ""}`}
+          onClick={() => toggleLike(song)}
+          title="Like Song"
         >
           {isLiked ? <FaHeart /> : <FaRegHeart />}
         </button>
 
-        {playlists.length > 0 && (
-          <button
-            className="icon-btn"
-            onClick={() => setShowPlaylist(!showPlaylist)}
-          >
-            <FaPlus />
-          </button>
-        )}
+        {/* Add Playlist */}
+        <button
+          className="icon-btn"
+          title="Add To Playlist"
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowPlaylist(!showPlaylist);
+          }}
+        >
+          <FaPlus />
+        </button>
 
+        {/* Play */}
         <button
           className="play-btn"
           onClick={handlePlay}
+          title="Play"
         >
           <FaPlay />
         </button>
+
       </div>
 
-      {showPlaylist && playlists.length > 0 && (
+      {/* Playlist Popup */}
+      {showPlaylist && (
         <div className="playlist-popup">
-          {playlists.map((playlist) => (
-            <button
-              key={playlist.id}
-              className="playlist-item"
-              onClick={() => {
-                if (addSongToPlaylist) {
+
+          <div className="playlist-popup-title">
+            Select Playlist
+          </div>
+
+          {playlists.length === 0 ? (
+
+            <div className="empty-playlist-text">
+              No Playlist Found
+            </div>
+
+          ) : (
+
+            playlists.map((playlist) => (
+
+              <button
+                key={playlist.id}
+                className="playlist-item"
+                onClick={() => {
                   addSongToPlaylist(playlist.id, song);
-                }
-                setShowPlaylist(false);
-              }}
-            >
-              {playlist.name}
-            </button>
-          ))}
+                  setShowPlaylist(false);
+                }}
+              >
+                🎵 {playlist.name}
+              </button>
+
+            ))
+
+          )}
+
         </div>
       )}
     </div>

@@ -4,14 +4,22 @@
     box-sizing:border-box;
 }
 
+html,
+body,
+#root{
+    width:100%;
+    height:100%;
+}
+
 body{
     background:#000;
+    color:#fff;
     font-family:Arial, Helvetica, sans-serif;
-    color:white;
     overflow:hidden;
 }
 
 .app{
+    width:100%;
     height:100vh;
     display:flex;
     flex-direction:column;
@@ -19,53 +27,358 @@ body{
 }
 
 .main-layout{
+
     flex:1;
+
     display:flex;
-    overflow:hidden;
+
     gap:10px;
+
     padding:10px;
+
+    overflow:hidden;
+
+    min-height:0;
+
 }
 
 .content{
+
     flex:1;
-    background:#121212;
-    border-radius:12px;
-    overflow-y:auto;
+
     min-width:0;
+
+    min-height:0;
+
+    background:#121212;
+
+    border-radius:12px;
+
+    overflow-y:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding-bottom:100px;
+
 }
 
-::-webkit-scrollbar{
+/* ===================================
+   DESKTOP LAYOUT
+=================================== */
+
+.content > *{
+    width:100%;
+}
+
+.main-layout > .content{
+    box-shadow:0 0 0 1px rgba(255,255,255,.04);
+}
+
+.app{
+    overflow:hidden;
+}
+
+/* ===================================
+   SCROLLBAR
+=================================== */
+
+.content::-webkit-scrollbar{
     width:8px;
 }
 
-::-webkit-scrollbar-thumb{
-    background:#555;
-    border-radius:20px;
+.content::-webkit-scrollbar-track{
+    background:#121212;
 }
 
-::-webkit-scrollbar-thumb:hover{
-    background:#777;
+.content::-webkit-scrollbar-thumb{
+    background:#4d4d4d;
+    border-radius:999px;
 }
 
-/* ===========================
-   Mobile Responsive
-=========================== */
+.content::-webkit-scrollbar-thumb:hover{
+    background:#6b6b6b;
+}
+
+.content{
+    scrollbar-width:thin;
+    scrollbar-color:#4d4d4d #121212;
+}
+
+/* ===================================
+   SMOOTH TRANSITIONS
+=================================== */
+
+.app,
+.main-layout,
+.content{
+    transition:all .3s ease;
+}
+
+/* ===================================
+   LARGE DESKTOP
+=================================== */
+
+@media (min-width:1400px){
+
+.main-layout{
+
+    padding:12px;
+    gap:12px;
+
+}
+
+.content{
+
+    border-radius:16px;
+
+}
+
+}
+
+/* ===================================
+   LAPTOP
+=================================== */
+
+@media (max-width:1200px){
+
+.main-layout{
+
+    gap:8px;
+    padding:8px;
+
+}
+
+.content{
+
+    border-radius:10px;
+
+}
+
+}
+/* ===================================
+   MOBILE RESPONSIVE
+=================================== */
 
 @media (max-width:768px){
 
-    body{
-        overflow:auto;
-    }
+html,
+body,
+#root{
 
-    .main-layout{
-        flex-direction:column;
-        padding:0;
-        gap:0;
-    }
+    overflow:hidden;
+    height:100%;
 
-    .content{
-        width:100%;
-        border-radius:0;
-        min-height:100vh;
-    }
+}
+
+.app{
+
+    height:100vh;
+    overflow:hidden;
+
+}
+
+.main-layout{
+
+    flex-direction:column;
+
+    gap:0;
+
+    padding:0;
+
+    overflow:hidden;
+
+}
+
+.content{
+
+    width:100%;
+
+    flex:1;
+
+    border-radius:0;
+
+    padding-bottom:170px;
+
+    overflow-y:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+}
+
+
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
+@media (max-width:480px){
+
+.content{
+
+    padding-bottom:180px;
+
+}
+
+.main-layout{
+
+    padding:0;
+
+}
+
+}
+
+
+/* ===================================
+   LANDSCAPE MOBILE
+=================================== */
+
+@media (max-width:768px) and (orientation:landscape){
+
+.content{
+
+    padding-bottom:100px;
+
+}
+
+}
+
+/* ===================================
+   FINAL POLISH
+=================================== */
+
+:root{
+
+    --spotify-black:#000000;
+    --spotify-dark:#121212;
+    --spotify-light:#181818;
+    --spotify-border:#2a2a2a;
+    --spotify-green:#1DB954;
+
+}
+
+/* ==========================
+   GLOBAL
+========================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+
+}
+
+/* ==========================
+   SAFE AREA
+========================== */
+
+@supports (padding:max(0px)){
+
+.app{
+
+padding-bottom:max(0px, env(safe-area-inset-bottom));
+
+}
+
+.content{
+
+padding-bottom:max(100px, env(safe-area-inset-bottom));
+
+}
+
+}
+
+/* ==========================
+   SELECTION
+========================== */
+
+::selection{
+
+    background:#1DB954;
+    color:#fff;
+
+}
+
+/* ==========================
+   FOCUS
+========================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible{
+
+    outline:2px solid var(--spotify-green);
+    outline-offset:2px;
+
+}
+
+/* ==========================
+   SMOOTH
+========================== */
+
+*{
+
+    transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease;
+
+}
+
+/* ==========================
+   LARGE DESKTOP
+========================== */
+
+@media (min-width:1600px){
+
+.main-layout{
+
+    max-width:1800px;
+
+    margin:auto;
+
+    width:100%;
+
+}
+
+}
+
+/* ==========================
+   EXTRA SMALL
+========================== */
+
+@media (max-width:360px){
+
+.content{
+
+    padding-bottom:190px;
+
+}
+
+}
+
+/* ==========================
+   REDUCE MOTION
+========================== */
+
+@media (prefers-reduced-motion:reduce){
+
+*{
+
+    transition:none !important;
+
+    animation:none !important;
+
+    scroll-behavior:auto !important;
+
+}
+
 }
