@@ -6,6 +6,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
+
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -29,18 +31,26 @@ const Navbar = () => {
   return (
     <div className="navbar">
 
+      {/* Left Section */}
       <div className="navbar-left">
 
-        <button className="nav-btn" onClick={() => navigate(-1)}>
+        <button
+          className="nav-btn"
+          onClick={() => navigate(-1)}
+        >
           <FaChevronLeft />
         </button>
 
-        <button className="nav-btn" onClick={() => navigate(1)}>
+        <button
+          className="nav-btn"
+          onClick={() => navigate(1)}
+        >
           <FaChevronRight />
         </button>
 
         <div className="search-box">
           <IoSearch />
+
           <input
             type="text"
             placeholder="What do you want to play?"
@@ -49,23 +59,22 @@ const Navbar = () => {
 
       </div>
 
+      {/* Right Section */}
       <div className="navbar-right">
 
         <button className="premium-btn">
           Explore Premium
         </button>
-{/* 
-        <button className="install-btn">
-          Install App
-        </button> */}
 
         <button className="bell-btn">
           <FaBell />
         </button>
 
+        <ThemeToggle />
+
         <img
           src={profileImg}
-          alt="profile"
+          alt="Profile"
           className="profile-img"
         />
 

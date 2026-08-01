@@ -1,120 +1,98 @@
 import React from "react";
 import "./LikedSongs.css";
-
+import { usePlayer } from "../../context/PlayerContext";
 import { FaHeart, FaPlay } from "react-icons/fa";
 
-import { usePlayer } from "../../context/PlayerContext";
-
 const LikedSongs = () => {
-
   const {
     likedSongs,
     playSong,
-    songs,
+    toggleLike,
   } = usePlayer();
-
-  const likedList = songs.filter(song =>
-    likedSongs.includes(song.id)
-  );
 
   return (
     <div className="liked-page">
 
-      {/* Header */}
-
       <div className="liked-header">
 
-        <div className="liked-cover">
+        <div className="liked-icon">
           <FaHeart />
         </div>
 
         <div>
-
           <p>Playlist</p>
 
           <h1>Liked Songs</h1>
 
-          <span>
-            {likedList.length} Songs
-          </span>
-
+          <span>{likedSongs.length} Songs</span>
         </div>
 
       </div>
-            {/* ==========================
-          SONG LIST
-      ========================== */}
 
-      <div className="liked-list">
+      {likedSongs.length === 0 ? (
 
-        {likedList.length > 0 ? (
+        <div className="empty-liked">
 
-          likedList.map((song) => {
+          <h2>No Liked Songs ❤️</h2>
 
-            const index = songs.findIndex(
-              item => item.id === song.id
-            );
+          <p>Like songs to see them here.</p>
 
-            return (
+        </div>
 
-              <div
-                key={song.id}
-                className="liked-song"
-              >
+      ) : (
 
-                <div
-                  className="liked-song-info"
-                  onClick={() => playSong(index)}
-                >
+        likedSongs.map((song, index) => (
 
-                  <img
-                    src={song.image}
-                    alt={song.title}
-                  />
+          <div
+            key={song.id}
+            className="liked-song"
+          >
 
-                  <div>
+            <div
+              className="liked-info"
+              onClick={() => playSong(song.id)}
+            >
 
-                    <h3>{song.title}</h3>
+              <span>{index + 1}</span>
 
-                    <p>{song.artist}</p>
+              <img
+                src={song.image}
+                alt={song.title}
+              />
 
-                  </div>
+              <div>
 
-                </div>
+                <h4>{song.title}</h4>
 
-                <button
-                  className="play-song-btn"
-                  onClick={() => playSong(index)}
-                >
-                  <FaPlay />
-                </button>
+                <p>{song.artist}</p>
 
               </div>
 
-            );
+            </div>
 
-          })
+            <div className="liked-actions">
 
-        ) : (
+              <button
+                onClick={() => playSong(song.id)}
+              >
+                <FaPlay />
+              </button>
 
-          <div className="empty-liked">
+              <button
+                onClick={() => toggleLike(song)}
+              >
+                <FaHeart />
+              </button>
 
-            <FaHeart className="empty-icon" />
-
-            <h2>No Liked Songs</h2>
-
-            <p>
-              Like your favourite songs and they will appear here.
-            </p>
+            </div>
 
           </div>
 
-        )}
+        ))
 
-      </div>
+      )}
 
     </div>
-
   );
 };
 

@@ -1,0 +1,19 @@
+.theme-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#1DB954;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:.3s;
+    font-size:18px;
+}
+
+.theme-btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 15px rgba(29,185,84,.45);
+}

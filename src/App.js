@@ -19,7 +19,8 @@ import Playlist from "./pages/Playlist/Playlist";
 import Library from "./pages/Library/Library";
 import Login from "./pages/Login/Login";
 import Artist from "./pages/Artist/Artist";
-
+import Lyrics from "./pages/Lyrics/Lyrics";
+import LikedSongs from "./pages/LikedSongs/LikedSongs";
 
 function SpotifyLayout() {
   return (
@@ -29,17 +30,26 @@ function SpotifyLayout() {
 
         <div className="content">
           <Navbar />
-<Routes>
-  <Route index element={<Navigate to="/home" replace />} />
 
-  <Route path="/home" element={<Home />} />
-  <Route path="/search" element={<Search />} />
-  <Route path="/album/:id" element={<Album />} />
-<Route path="/playlist" element={<Playlist />} />
-<Route path="/playlist/:id" element={<Playlist />} />
-  <Route path="/library" element={<Library />} />
-  <Route path="/artist/:id" element={<Artist />} />
-</Routes>
+          <Routes>
+            <Route index element={<Navigate to="/home" replace />} />
+
+            <Route path="/home" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/album/:id" element={<Album />} />
+            <Route path="/playlist" element={<Playlist />} />
+            <Route path="/playlist/:id" element={<Playlist />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/artist/:id" element={<Artist />} />
+            <Route path="/lyrics" element={<Lyrics />} />
+
+            {/* Invalid route */}
+            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route
+  path="/liked"
+  element={<LikedSongs />}
+/>
+          </Routes>
         </div>
 
         <Queue />
@@ -54,9 +64,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
+        {/* Public Route */}
         <Route path="/login" element={<Login />} />
 
+        {/* Protected Routes */}
         <Route
           path="/*"
           element={
@@ -65,9 +76,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
-        <Route path="*" element={<Navigate to="/login" replace />} />
-
       </Routes>
     </BrowserRouter>
   );

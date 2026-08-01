@@ -1,6 +1,6 @@
 import React from "react";
 import "./Queue.css";
-import { FaMusic } from "react-icons/fa";
+import { FaMusic, FaTimes } from "react-icons/fa";
 import { usePlayer } from "../../context/PlayerContext";
 
 const Queue = () => {
@@ -9,7 +9,18 @@ const Queue = () => {
     songs,
     currentSong,
     playSong,
+    removeFromQueue,
   } = usePlayer();
+
+  const handlePlaySong = (song) => {
+    const index = songs.findIndex(
+      (item) => item.id === song.id
+    );
+
+    if (index !== -1) {
+      playSong(index);
+    }
+  };
 
   return (
     <div className="queue">
@@ -31,8 +42,7 @@ const Queue = () => {
 
         queue.map((song, index) => {
 
-          const isActive =
-            currentSong?.id === song.id;
+          const isActive = currentSong?.id === song.id;
 
           return (
 
@@ -41,13 +51,7 @@ const Queue = () => {
               className={`queue-item ${
                 isActive ? "active-song" : ""
               }`}
-              onClick={() =>
-                playSong(
-                  songs.findIndex(
-                    (item) => item.id === song.id
-                  )
-                )
-              }
+              onClick={() => handlePlaySong(song)}
             >
 
               <span className="queue-number">
@@ -65,7 +69,23 @@ const Queue = () => {
 
                 <p>{song.artist}</p>
 
+                {isActive && (
+                  <small className="now-playing">
+                    Now Playing
+                  </small>
+                )}
+
               </div>
+
+              <button
+                className="remove-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeFromQueue(song.id);
+                }}
+              >
+                <FaTimes />
+              </button>
 
             </div>
 

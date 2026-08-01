@@ -100,6 +100,7 @@ const Sidebar = () => {
               <span>Your Library</span>
             </NavLink>
 
+
           </div>
 
           {/* Playlist Section */}
@@ -115,10 +116,16 @@ const Sidebar = () => {
               <span>Create Playlist</span>
             </NavLink>
 
-            <div className="playlist-btn">
-              <FaHeart />
-              <span>Liked Songs</span>
-            </div>
+          <NavLink
+  to="/liked"
+  onClick={closeMenu}
+  className={({ isActive }) =>
+    isActive ? "menu-item active" : "menu-item"
+  }
+>
+  <FaHeart className="icon" />
+  <span>Liked Songs</span>
+</NavLink>
 
             <div className="playlist-title">
               Your Playlists

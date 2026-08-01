@@ -1,0 +1,63 @@
+.premium-banner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(90deg,#1DB954,#1ed760);
+    padding:25px 30px;
+    border-radius:18px;
+    margin-bottom:35px;
+}
+
+.premium-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.spotify-icon{
+    font-size:55px;
+    color:white;
+}
+
+.premium-left h2{
+    color:white;
+    margin-bottom:6px;
+    font-size:28px;
+}
+
+.premium-left p{
+    color:white;
+    opacity:.9;
+}
+
+.premium-btn{
+    background:white;
+    color:black;
+    border:none;
+    padding:14px 28px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transition:.3s;
+}
+
+.premium-btn:hover{
+    transform:scale(1.05);
+}
+
+@media(max-width:768px){
+
+    .premium-banner{
+        flex-direction:column;
+        gap:20px;
+        text-align:center;
+    }
+
+    .premium-left{
+        flex-direction:column;
+    }
+
+}

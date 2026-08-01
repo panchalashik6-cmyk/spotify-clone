@@ -10,11 +10,17 @@
     position:relative;
     transition:.3s;
     cursor:pointer;
+    overflow:visible;
 }
 
 .song-card:hover{
     background:#282828;
+    transform:translateY(-2px);
 }
+
+/* ==========================
+   LEFT
+========================== */
 
 .song-left{
     display:flex;
@@ -30,9 +36,15 @@
     border-radius:8px;
     object-fit:cover;
     flex-shrink:0;
+    transition:.3s;
+}
+
+.song-card:hover .song-image{
+    transform:scale(1.05);
 }
 
 .song-info{
+    flex:1;
     overflow:hidden;
 }
 
@@ -54,13 +66,19 @@
     text-overflow:ellipsis;
 }
 
+/* ==========================
+   RIGHT
+========================== */
+
 .song-actions{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
-/* ---------- Buttons ---------- */
+/* ==========================
+   BUTTONS
+========================== */
 
 .icon-btn,
 .play-btn{
@@ -72,60 +90,83 @@
     justify-content:center;
     align-items:center;
     cursor:pointer;
-    transition:.3s;
+    transition:.25s;
     font-size:16px;
 }
 
 .icon-btn{
     background:#2b2b2b;
-    color:white;
+    color:#fff;
 }
 
 .icon-btn:hover{
-    background:#3b3b3b;
+    background:#3a3a3a;
     transform:scale(1.08);
 }
 
 .play-btn{
     background:#1DB954;
-    color:white;
+    color:#fff;
 }
 
 .play-btn:hover{
     transform:scale(1.08);
-    box-shadow:0 0 15px rgba(29,185,84,.45);
+    box-shadow:0 0 18px rgba(29,185,84,.45);
 }
 
-.play-btn:active,
-.icon-btn:active{
+.icon-btn:active,
+.play-btn:active{
     transform:scale(.95);
 }
 
+/* ==========================
+   LIKE
+========================== */
+
 .liked{
-    color:#1DB954;
+    color:#1DB954 !important;
+    animation:heartPop .35s ease;
 }
 
-/* ---------- Playlist Popup ---------- */
+@keyframes heartPop{
+
+0%{
+transform:scale(.4);
+}
+
+60%{
+transform:scale(1.35);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* ==========================
+   PLAYLIST POPUP
+========================== */
 
 .playlist-popup{
     position:absolute;
     top:72px;
-    right:10px;
+    right:0;
     width:220px;
     background:#282828;
-    border-radius:10px;
+    border-radius:12px;
     overflow:hidden;
     box-shadow:0 10px 30px rgba(0,0,0,.45);
-    z-index:100;
+    z-index:999;
     animation:popup .25s ease;
 }
 
 .playlist-popup-title{
     padding:12px 15px;
-    color:white;
+    background:#202020;
+    color:#fff;
     font-weight:600;
     border-bottom:1px solid #404040;
-    background:#202020;
 }
 
 .playlist-item{
@@ -133,7 +174,7 @@
     padding:12px 15px;
     border:none;
     background:none;
-    color:white;
+    color:#fff;
     text-align:left;
     cursor:pointer;
     transition:.25s;
@@ -142,88 +183,89 @@
 
 .playlist-item:hover{
     background:#1DB954;
-    color:white;
 }
 
 .empty-playlist-text{
-    padding:20px;
-    color:#b3b3b3;
+    padding:18px;
     text-align:center;
-    font-size:14px;
+    color:#b3b3b3;
 }
-
-/* ---------- Animation ---------- */
 
 @keyframes popup{
 
-    from{
-        opacity:0;
-        transform:translateY(-10px);
-    }
+from{
+opacity:0;
+transform:translateY(-10px);
+}
 
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+to{
+opacity:1;
+transform:translateY(0);
+}
 
 }
 
-/* ---------- Tablet ---------- */
+/* ==========================
+   TABLET
+========================== */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
 .song-card{
-    padding:12px;
+padding:12px;
 }
 
 .song-image{
-    width:55px;
-    height:55px;
+width:55px;
+height:55px;
 }
 
 .song-info h4{
-    font-size:15px;
+font-size:15px;
 }
 
 .song-info p{
-    font-size:13px;
+font-size:13px;
 }
 
 .icon-btn,
 .play-btn{
-    width:36px;
-    height:36px;
+width:36px;
+height:36px;
+font-size:15px;
 }
 
 .playlist-popup{
-    width:200px;
+width:200px;
 }
 
 }
 
-/* ---------- Mobile ---------- */
+/* ==========================
+   MOBILE
+========================== */
 
-@media (max-width:480px){
+@media(max-width:480px){
 
 .song-card{
-    flex-direction:column;
-    align-items:flex-start;
+flex-direction:column;
+align-items:flex-start;
 }
 
 .song-left{
-    width:100%;
+width:100%;
 }
 
 .song-actions{
-    width:100%;
-    justify-content:flex-end;
+width:100%;
+justify-content:flex-end;
 }
 
 .playlist-popup{
-    right:0;
-    left:0;
-    width:100%;
-    top:115px;
+width:100%;
+left:0;
+right:0;
+top:115px;
 }
 
 }

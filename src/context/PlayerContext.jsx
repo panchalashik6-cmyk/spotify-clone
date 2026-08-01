@@ -4,6 +4,7 @@ import React, {
   useState,
   useEffect,
 } from "react";
+
 import songs from "../data/songs";
 
 const PlayerContext = createContext();
@@ -28,13 +29,17 @@ export const PlayerProvider = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // ==========================
-  // Shuffle & Repeat
+  // Shuffle
   // ==========================
 
   const [isShuffle, setIsShuffle] = useState(() => {
     const saved = localStorage.getItem("shuffle");
     return saved ? JSON.parse(saved) : false;
   });
+
+  // ==========================
+  // Repeat
+  // ==========================
 
   const [isRepeat, setIsRepeat] = useState(() => {
     const saved = localStorage.getItem("repeat");
@@ -47,6 +52,15 @@ export const PlayerProvider = ({ children }) => {
 
   const [likedSongs, setLikedSongs] = useState(() => {
     const saved = localStorage.getItem("likedSongs");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // ==========================
+  // Favorite Artists
+  // ==========================
+
+  const [favoriteArtists, setFavoriteArtists] = useState(() => {
+    const saved = localStorage.getItem("favoriteArtists");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -83,253 +97,480 @@ export const PlayerProvider = ({ children }) => {
         ];
   });
 
-  // Current Song
+  // ==========================
+  // Current Song Object
+  // ==========================
 
   const currentSong = allSongs[currentIndex];
+
   // ==========================
-// Save Local Storage
-// ==========================
+  // Save Local Storage
+  // ==========================
 
-useEffect(() => {
-  localStorage.setItem("currentSong", currentIndex);
-}, [currentIndex]);
+  useEffect(() => {
+    localStorage.setItem("currentSong", currentIndex);
+  }, [currentIndex]);
 
-useEffect(() => {
-  localStorage.setItem(
-    "likedSongs",
-    JSON.stringify(likedSongs)
-  );
-}, [likedSongs]);
-
-useEffect(() => {
-  localStorage.setItem(
-    "recentSongs",
-    JSON.stringify(recentSongs)
-  );
-}, [recentSongs]);
-
-useEffect(() => {
-  localStorage.setItem(
-    "playlists",
-    JSON.stringify(playlists)
-  );
-}, [playlists]);
-
-useEffect(() => {
-  localStorage.setItem(
-    "shuffle",
-    JSON.stringify(isShuffle)
-  );
-}, [isShuffle]);
-
-useEffect(() => {
-  localStorage.setItem(
-    "repeat",
-    JSON.stringify(isRepeat)
-  );
-}, [isRepeat]);
-const playSong = (index) => {
-
-  if (index < 0 || index >= allSongs.length) return;
-
-  setCurrentIndex(index);
-  setIsPlaying(true);
-
-  const song = allSongs[index];
-
-  // Recently Played
-  setRecentSongs((prev) => {
-
-    const filtered = prev.filter(
-      (item) => item.id !== song.id
+  useEffect(() => {
+    localStorage.setItem(
+      "likedSongs",
+      JSON.stringify(likedSongs)
     );
+  }, [likedSongs]);
 
-    return [song, ...filtered].slice(0, 10);
+  useEffect(() => {
+    localStorage.setItem(
+      "favoriteArtists",
+      JSON.stringify(favoriteArtists)
+    );
+  }, [favoriteArtists]);
 
-  });
+  useEffect(() => {
+    localStorage.setItem(
+      "recentSongs",
+      JSON.stringify(recentSongs)
+    );
+  }, [recentSongs]);
 
-  // Queue
+  useEffect(() => {
+    localStorage.setItem(
+      "playlists",
+      JSON.stringify(playlists)
+    );
+  }, [playlists]);
 
-  const nextQueue = [
-    ...allSongs.slice(index + 1),
-    ...allSongs.slice(0, index),
-  ];
+  useEffect(() => {
+    localStorage.setItem(
+      "shuffle",
+      JSON.stringify(isShuffle)
+    );
+  }, [isShuffle]);
 
-  setQueue(nextQueue);
-};
+  useEffect(() => {
+    localStorage.setItem(
+      "repeat",
+      JSON.stringify(isRepeat)
+    );
+  }, [isRepeat]);
 
-// ==========================
-// Pause
-// ==========================
-const pauseSong = () => {
-  setIsPlaying(false);
-};
+  // ==========================
+  // Play Song (Index Based)
+  // ==========================
 
-// ==========================
-// Next Song
-// ==========================
-const nextSong = () => {
-  if (isRepeat) {
-    playSong(currentIndex);
-    return;
-  }
+  const playSong = (index) => {
 
-  if (isShuffle) {
-    const randomIndex = Math.floor(Math.random() * allSongs.length);
-    playSong(randomIndex);
-    return;
-  }
+    if (
+      index < 0 ||
+      index >= allSongs.length
+    ) {
+      return;
+    }
 
-  const next = (currentIndex + 1) % allSongs.length;
-  playSong(next);
-};
+    // Same song
+    if (index === currentIndex) {
+      setIsPlaying(true);
+      return;
+    }
 
-// ==========================
-// Previous Song
-// ==========================
-const previousSong = () => {
-  const prev =
-    currentIndex === 0
-      ? allSongs.length - 1
-      : currentIndex - 1;
+    setCurrentIndex(index);
+    setIsPlaying(true);
 
-  playSong(prev);
-};
+    const song = allSongs[index];
 
-// ==========================
-// Shuffle
-// ==========================
-const toggleShuffle = () => {
-  setIsShuffle((prev) => !prev);
-};
+    // Recently Played
+    setRecentSongs((prev) => {
 
-// ==========================
-// Repeat
-// ==========================
-const toggleRepeat = () => {
-  setIsRepeat((prev) => !prev);
-};
-
-// ==========================
-// Like Song
-// ==========================
-const toggleLike = (song) => {
-  const exists = likedSongs.find(
-    (item) => item.id === song.id
-  );
-
-  if (exists) {
-    setLikedSongs(
-      likedSongs.filter(
+      const filtered = prev.filter(
         (item) => item.id !== song.id
-      )
-    );
-  } else {
-    setLikedSongs([...likedSongs, song]);
-  }
-};
+      );
 
-// ==========================
-// Create Playlist
-// ==========================
-const createPlaylist = (name) => {
-  if (!name.trim()) return;
+      return [song, ...filtered].slice(0, 20);
 
-  const newPlaylist = {
-    id: Date.now(),
-    name,
-    songs: [],
+    });
+
+    // Queue
+    const nextQueue = [
+      ...allSongs.slice(index + 1),
+      ...allSongs.slice(0, index),
+    ];
+
+    setQueue(nextQueue);
+  };
+    // ==========================
+  // Pause Song
+  // ==========================
+
+  const pauseSong = () => {
+    setIsPlaying(false);
   };
 
-  setPlaylists((prev) => [...prev, newPlaylist]);
-};
+  // ==========================
+  // Toggle Play / Pause
+  // ==========================
 
-// ==========================
-// Add Song To Playlist
-// ==========================
-const addSongToPlaylist = (playlistId, song) => {
-  setPlaylists((prev) =>
-    prev.map((playlist) => {
-      if (playlist.id !== playlistId) {
-        return playlist;
-      }
+  const togglePlay = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
-      const exists = playlist.songs.find(
+  // ==========================
+  // Next Song
+  // ==========================
+
+  const nextSong = () => {
+
+    // Repeat Current Song
+    if (isRepeat) {
+      playSong(currentIndex);
+      return;
+    }
+
+    // Shuffle Mode
+    if (isShuffle) {
+
+      const randomIndex = Math.floor(
+        Math.random() * allSongs.length
+      );
+
+      playSong(randomIndex);
+      return;
+    }
+
+    // Normal Next Song
+    const nextIndex =
+      (currentIndex + 1) % allSongs.length;
+
+    playSong(nextIndex);
+  };
+
+  // ==========================
+  // Previous Song
+  // ==========================
+
+  const previousSong = () => {
+
+    const prevIndex =
+      currentIndex === 0
+        ? allSongs.length - 1
+        : currentIndex - 1;
+
+    playSong(prevIndex);
+  };
+
+  // ==========================
+  // Shuffle
+  // ==========================
+
+  const toggleShuffle = () => {
+    setIsShuffle((prev) => !prev);
+  };
+
+  // ==========================
+  // Repeat
+  // ==========================
+
+  const toggleRepeat = () => {
+    setIsRepeat((prev) => !prev);
+  };
+
+  // ==========================
+  // Like Song
+  // ==========================
+
+  const toggleLike = (song) => {
+
+    const exists = likedSongs.find(
+      (item) => item.id === song.id
+    );
+
+    if (exists) {
+
+      setLikedSongs((prev) =>
+        prev.filter(
+          (item) => item.id !== song.id
+        )
+      );
+
+    } else {
+
+      setLikedSongs((prev) => [
+        ...prev,
+        song,
+      ]);
+
+    }
+
+  };
+
+  // ==========================
+  // Follow Artist
+  // ==========================
+
+  const followArtist = (artist) => {
+
+    const exists = favoriteArtists.find(
+      (item) => item.id === artist.id
+    );
+
+    if (exists) return;
+
+    setFavoriteArtists((prev) => [
+      ...prev,
+      artist,
+    ]);
+
+  };
+
+  // ==========================
+  // Unfollow Artist
+  // ==========================
+
+  const unfollowArtist = (artistId) => {
+
+    setFavoriteArtists((prev) =>
+      prev.filter(
+        (artist) => artist.id !== artistId
+      )
+    );
+
+  };
+
+  // ==========================
+  // Queue
+  // ==========================
+
+  const addToQueue = (song) => {
+
+    setQueue((prev) => {
+
+      const exists = prev.find(
         (item) => item.id === song.id
       );
 
-      if (exists) return playlist;
+      if (exists) return prev;
 
-      return {
-        ...playlist,
-        songs: [...playlist.songs, song],
-      };
-    })
+      return [...prev, song];
+
+    });
+
+  };
+
+  const removeFromQueue = (songId) => {
+
+    setQueue((prev) =>
+      prev.filter(
+        (song) => song.id !== songId
+      )
+    );
+
+  };
+
+  const clearQueue = () => {
+    setQueue([]);
+  };
+    // ==========================
+  // Create Playlist
+  // ==========================
+
+  const createPlaylist = (name) => {
+
+    if (!name.trim()) return;
+
+    const newPlaylist = {
+      id: Date.now(),
+      name,
+      songs: [],
+    };
+
+    setPlaylists((prev) => [
+      ...prev,
+      newPlaylist,
+    ]);
+
+  };
+
+  // ==========================
+  // Add Song To Playlist
+  // ==========================
+
+  const addSongToPlaylist = (
+    playlistId,
+    song
+  ) => {
+
+    setPlaylists((prev) =>
+      prev.map((playlist) => {
+
+        if (playlist.id !== playlistId)
+          return playlist;
+
+        const exists =
+          playlist.songs.find(
+            (item) => item.id === song.id
+          );
+
+        if (exists) return playlist;
+
+        return {
+          ...playlist,
+          songs: [
+            ...playlist.songs,
+            song,
+          ],
+        };
+
+      })
+    );
+
+  };
+
+  // ==========================
+  // Remove Song From Playlist
+  // ==========================
+
+  const removeSongFromPlaylist = (
+    playlistId,
+    songId
+  ) => {
+
+    setPlaylists((prev) =>
+      prev.map((playlist) => {
+
+        if (playlist.id !== playlistId)
+          return playlist;
+
+        return {
+          ...playlist,
+          songs: playlist.songs.filter(
+            (song) => song.id !== songId
+          ),
+        };
+
+      })
+    );
+
+  };
+
+  // ==========================
+  // Recently Played
+  // ==========================
+
+  const clearRecentHistory = () => {
+    setRecentSongs([]);
+  };
+
+  // ==========================
+  // Liked Songs
+  // ==========================
+
+  const clearLikedSongs = () => {
+    setLikedSongs([]);
+  };
+
+  const isLiked = (songId) => {
+    return likedSongs.some(
+      (song) => song.id === songId
+    );
+  };
+
+  // ==========================
+  // Favorite Artists
+  // ==========================
+
+  const isFollowingArtist = (artistId) => {
+    return favoriteArtists.some(
+      (artist) => artist.id === artistId
+    );
+  };
+
+  // ==========================
+  // Queue Helpers
+  // ==========================
+
+  const clearQueueHistory = () => {
+    setQueue([]);
+  };
+
+  const isInQueue = (songId) => {
+    return queue.some(
+      (song) => song.id === songId
+    );
+  };
+    return (
+    <PlayerContext.Provider
+      value={{
+        // ==========================
+        // Songs
+        // ==========================
+        songs: allSongs,
+
+        // ==========================
+        // Current Song
+        // ==========================
+        currentSong,
+        currentIndex,
+        isPlaying,
+
+        // ==========================
+        // Player Controls
+        // ==========================
+        playSong,
+        pauseSong,
+        togglePlay,
+        nextSong,
+        previousSong,
+
+        // ==========================
+        // Shuffle & Repeat
+        // ==========================
+        isShuffle,
+        isRepeat,
+        toggleShuffle,
+        toggleRepeat,
+
+        // ==========================
+        // Liked Songs
+        // ==========================
+        likedSongs,
+        toggleLike,
+        clearLikedSongs,
+        isLiked,
+
+        // ==========================
+        // Favorite Artists
+        // ==========================
+        favoriteArtists,
+        followArtist,
+        unfollowArtist,
+        isFollowingArtist,
+
+        // ==========================
+        // Recently Played
+        // ==========================
+        recentSongs,
+        clearRecentHistory,
+
+        // ==========================
+        // Queue
+        // ==========================
+        queue,
+        addToQueue,
+        removeFromQueue,
+        clearQueue,
+        clearQueueHistory,
+        isInQueue,
+
+        // ==========================
+        // Playlists
+        // ==========================
+        playlists,
+        createPlaylist,
+        addSongToPlaylist,
+        removeSongFromPlaylist,
+      }}
+    >
+      {children}
+    </PlayerContext.Provider>
   );
-};
-
-// ==========================
-// Remove Song From Playlist
-// ==========================
-const removeSongFromPlaylist = (playlistId, songId) => {
-  setPlaylists((prev) =>
-    prev.map((playlist) => {
-      if (playlist.id !== playlistId) {
-        return playlist;
-      }
-
-      return {
-        ...playlist,
-        songs: playlist.songs.filter(
-          (song) => song.id !== songId
-        ),
-      };
-    })
-  );
-};
-return (
-  <PlayerContext.Provider
-    value={{
-      // Songs
-      songs: allSongs,
-
-      // Current Song
-      currentSong,
-      currentIndex,
-      isPlaying,
-
-      // Player Controls
-      playSong,
-      pauseSong,
-      nextSong,
-      previousSong,
-
-      // Shuffle & Repeat
-      isShuffle,
-      isRepeat,
-      toggleShuffle,
-      toggleRepeat,
-
-      // Likes
-      likedSongs,
-      toggleLike,
-
-      // Recently Played
-      recentSongs,
-
-      // Queue
-      queue,
-
-      // Playlists
-      playlists,
-      createPlaylist,
-      addSongToPlaylist,
-      removeSongFromPlaylist,
-    }}
-  >
-    {children}
-  </PlayerContext.Provider>
-);
 };
 
 export const usePlayer = () => useContext(PlayerContext);

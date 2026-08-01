@@ -585,3 +585,121 @@ font-size:11px;
 .queue-empty p{
     color:#b3b3b3;
 }
+
+/* ===================================
+   REMOVE BUTTON
+=================================== */
+
+.remove-btn{
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:transparent;
+    color:#b3b3b3;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    transition:.3s;
+}
+
+.queue-item:hover .remove-btn{
+    opacity:1;
+}
+
+.remove-btn:hover{
+    background:#2a2a2a;
+    color:#fff;
+}
+
+/* ===================================
+   NOW PLAYING
+=================================== */
+
+.now-playing{
+    display:inline-block;
+    margin-top:4px;
+    color:#1DB954;
+    font-size:11px;
+    font-weight:600;
+}
+
+/* ===================================
+   ACTIVE SONG EFFECT
+=================================== */
+
+.active-song{
+    background:rgba(29,185,84,.12);
+    border-left:4px solid #1DB954;
+}
+
+.active-song img{
+    box-shadow:0 0 12px rgba(29,185,84,.4);
+}
+
+.active-song h4{
+    color:#1DB954;
+}
+
+/* ===================================
+   PLAYING ANIMATION
+=================================== */
+
+.active-song::before{
+    content:"";
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#1DB954;
+    margin-right:8px;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+opacity:1;
+}
+
+50%{
+transform:scale(1.6);
+opacity:.5;
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+/* ===================================
+   HEADER STICKY
+=================================== */
+
+.queue-header{
+    position:sticky;
+    top:0;
+    background:#121212;
+    z-index:5;
+    padding-bottom:12px;
+}
+
+/* ===================================
+   GLASS EFFECT
+=================================== */
+
+.queue{
+    backdrop-filter:blur(12px);
+}
+
+/* ===================================
+   SMOOTH SCROLL
+=================================== */
+
+.queue{
+    scroll-behavior:smooth;
+}

@@ -1,151 +1,153 @@
 import React, { useState } from "react";
 import "./Playlist.css";
 import { usePlayer } from "../../context/PlayerContext";
-import SongCard from "../../components/SongCard/SongCard";
-import { useParams } from "react-router-dom";
+import { FaPlay, FaMusic } from "react-icons/fa";
+import CreatePlaylist from "../../components/CreatePlaylist/CreatePlaylist";
 
 const Playlist = () => {
+
   const {
     playlists,
-    createPlaylist,
+    songs,
+    playSong,
     removeSongFromPlaylist,
   } = usePlayer();
 
-  const { id } = useParams();
+  const [showPopup, setShowPopup] = useState(false);
 
-  const [playlistName, setPlaylistName] = useState("");
+  const playSelectedSong = (song) => {
 
-  const handleCreate = () => {
-    if (!playlistName.trim()) return;
-
-    createPlaylist(playlistName);
-    setPlaylistName("");
-  };
-
-  const selectedPlaylist = id
-    ? playlists.find((playlist) => playlist.id === Number(id))
-    : null;
-
-  // ==========================
-  // SINGLE PLAYLIST PAGE
-  // ==========================
-
-  if (selectedPlaylist) {
-    return (
-      <div className="playlist-page">
-
-        <div className="playlist-banner">
-
-          <div className="playlist-cover">
-            🎵
-          </div>
-
-          <div>
-
-            <small>PLAYLIST</small>
-
-            <h1>{selectedPlaylist.name}</h1>
-
-            <p>{selectedPlaylist.songs.length} Songs</p>
-
-          </div>
-
-        </div>
-
-        {selectedPlaylist.songs.length === 0 ? (
-
-          <div className="empty-playlist">
-            No songs in this playlist.
-          </div>
-
-        ) : (
-
-          selectedPlaylist.songs.map((song) => (
-
-            <div
-              className="playlist-song"
-              key={song.id}
-            >
-
-              <SongCard song={song} />
-
-              <button
-                className="remove-btn"
-                onClick={() =>
-                  removeSongFromPlaylist(
-                    selectedPlaylist.id,
-                    song.id
-                  )
-                }
-              >
-                Remove
-              </button>
-
-            </div>
-
-          ))
-
-        )}
-
-      </div>
+    const index = songs.findIndex(
+      (item) => item.id === song.id
     );
-  }
 
-  // ==========================
-  // ALL PLAYLISTS PAGE
-  // ==========================
+    if (index !== -1) {
+      playSong(index);
+    }
+
+  };
 
   return (
     <div className="playlist-page">
 
-      <h1>Your Playlists</h1>
+      <div className="playlist-top">
 
-      <div className="playlist-create">
+        <h1>My Playlists</h1>
 
-        <input
-          type="text"
-          placeholder="Playlist Name"
-          value={playlistName}
-          onChange={(e) =>
-            setPlaylistName(e.target.value)
-          }
-        />
-
-        <button onClick={handleCreate}>
-          Create
+        <button
+          className="new-playlist-btn"
+          onClick={() => setShowPopup(true)}
+        >
+          + New Playlist
         </button>
 
       </div>
 
-      {playlists.length === 0 ? (
+      {playlists.map((playlist) => (
 
-        <div className="empty-playlist">
-          No Playlist Found
-        </div>
+        <div
+          className="playlist-card"
+          key={playlist.id}
+        >
 
-      ) : (
+          <div className="playlist-header">
 
-        playlists.map((playlist) => (
-
-          <div
-            className="playlist-box"
-            key={playlist.id}
-          >
-
-            <div className="playlist-header">
+            <div>
 
               <h2>{playlist.name}</h2>
 
-              <span>
-                {playlist.songs.length} Songs
-              </span>
+              <p>{playlist.songs.length} Songs</p>
 
             </div>
 
+            {playlist.songs.length > 0 && (
+
+              <button
+                className="playlist-play-btn"
+                onClick={() =>
+                  playSelectedSong(
+                    playlist.songs[0]
+                  )
+                }
+              >
+                <FaPlay />
+              </button>
+
+            )}
+
           </div>
 
-        ))
+          {playlist.songs.length === 0 ? (
 
+            <div className="empty-playlist">
+
+              <FaMusic />
+
+              <p>No songs in this playlist</p>
+
+            </div>
+
+          ) : (
+
+            playlist.songs.map((song, index) => (
+
+              <div
+                className="playlist-song"
+                key={song.id}
+              >
+
+                <div
+                  className="playlist-song-info"
+                  onClick={() =>
+                    playSelectedSong(song)
+                  }
+                >
+
+                  <span>{index + 1}</span>
+
+                  <img
+                    src={song.image}
+                    alt={song.title}
+                  />
+
+                  <div>
+
+                    <h4>{song.title}</h4>
+
+                    <p>{song.artist}</p>
+
+                  </div>
+
+                </div>
+
+                <button
+                  className="remove-btn"
+                  onClick={() =>
+                    removeSongFromPlaylist(
+                      playlist.id,
+                      song.id
+                    )
+                  }
+                >
+                  Remove
+                </button>
+
+              </div>
+
+            ))
+
+          )}
+
+        </div>
+
+      ))}
+
+      {showPopup && (
+        <CreatePlaylist
+          onClose={() =>
+            setShowPopup(false)
+          }
+        />
       )}
 
     </div>

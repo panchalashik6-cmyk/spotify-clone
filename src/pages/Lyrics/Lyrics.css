@@ -1,0 +1,219 @@
+/* ==========================
+   LYRICS PAGE
+========================== */
+
+.lyrics-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #121212;
+  color: #fff;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.lyrics-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.lyrics-cover {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+.lyrics-info h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.lyrics-info p {
+  color: #b3b3b3;
+  font-size: 18px;
+}
+
+/* ==========================
+   PLAY BUTTON
+========================== */
+
+.play-btn {
+  margin-top: 20px;
+  width: 140px;
+  height: 50px;
+  border: none;
+  border-radius: 30px;
+  background: #1db954;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.play-btn:hover {
+  background: #1ed760;
+  transform: scale(1.05);
+}
+
+/* ==========================
+   LYRICS BOX
+========================== */
+
+.lyrics-box {
+  margin-top: 40px;
+  background: #181818;
+  border-radius: 12px;
+  padding: 30px;
+  line-height: 2;
+  font-size: 18px;
+  white-space: pre-line;
+  color: #f1f1f1;
+  box-shadow: 0 8px 25px rgba(0,0,0,.3);
+}
+
+/* ==========================
+   EMPTY STATE
+========================== */
+
+.no-lyrics {
+  margin-top: 60px;
+  text-align: center;
+  color: #b3b3b3;
+}
+
+.no-lyrics h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+.lyrics-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lyrics-page::-webkit-scrollbar-thumb {
+  background: #1db954;
+  border-radius: 20px;
+}
+
+.lyrics-page::-webkit-scrollbar-track {
+  background: #222;
+}
+
+/* ==========================
+   LAPTOP
+========================== */
+
+@media (max-width:1200px){
+
+  .lyrics-info h1{
+    font-size:40px;
+  }
+
+  .lyrics-cover{
+    width:150px;
+    height:150px;
+  }
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:768px){
+
+  .lyrics-page{
+    padding:25px;
+  }
+
+  .lyrics-header{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .lyrics-cover{
+    width:150px;
+    height:150px;
+  }
+
+  .lyrics-info h1{
+    font-size:34px;
+  }
+
+  .lyrics-box{
+    font-size:17px;
+    padding:20px;
+  }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:576px){
+
+  .lyrics-page{
+    padding:18px;
+  }
+
+  .lyrics-cover{
+    width:120px;
+    height:120px;
+  }
+
+  .lyrics-info h1{
+    font-size:28px;
+  }
+
+  .lyrics-info p{
+    font-size:15px;
+  }
+
+  .play-btn{
+    width:120px;
+    height:45px;
+    font-size:14px;
+  }
+
+  .lyrics-box{
+    font-size:15px;
+    line-height:1.8;
+    padding:18px;
+  }
+
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media (max-width:400px){
+
+  .lyrics-info h1{
+    font-size:22px;
+  }
+
+  .lyrics-cover{
+    width:100px;
+    height:100px;
+  }
+
+  .lyrics-box{
+    font-size:14px;
+    padding:15px;
+  }
+
+}

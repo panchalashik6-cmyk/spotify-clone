@@ -1,374 +1,117 @@
-/* ==========================================
-   SEARCH PAGE
-========================================== */
-
 .search-page{
-    flex:1;
+    width:100%;
     min-height:100vh;
-    padding:30px;
     background:#121212;
     color:#fff;
-    overflow-y:auto;
+    padding:30px;
 }
 
-/* ==========================================
-   HEADER
-========================================== */
-
-.search-header{
-    margin-bottom:30px;
-}
-
-.search-header h1{
-    font-size:42px;
-    font-weight:700;
-    margin-bottom:8px;
-}
-
-.search-header p{
-    color:#b3b3b3;
-    font-size:16px;
-}
-
-/* ==========================================
-   SEARCH BOX
-========================================== */
-
-.search-box{
-    position:relative;
-    max-width:650px;
-    margin-bottom:40px;
-}
-
-.search-box input{
+.search-input{
     width:100%;
-    padding:15px 20px 15px 55px;
+    max-width:700px;
+    height:55px;
     border:none;
     outline:none;
-    border-radius:40px;
+    border-radius:30px;
+    padding:0 25px;
+    font-size:17px;
     background:#242424;
     color:#fff;
-    font-size:16px;
+    margin-bottom:40px;
+    transition:.3s;
 }
 
-.search-box input::placeholder{
-    color:#b3b3b3;
-}
-
-.search-box input:focus{
+.search-input:focus{
+    border:2px solid #1DB954;
     background:#2d2d2d;
 }
 
-.search-icon{
-    position:absolute;
-    left:18px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:22px;
-    color:#b3b3b3;
-}
-
-/* ==========================================
-   BROWSE SECTION
-========================================== */
-
-.browse-title{
+.search-page h2{
+    margin:30px 0 20px;
     font-size:28px;
     font-weight:700;
-    margin-bottom:20px;
 }
 
-.browse-grid{
+.search-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
     gap:20px;
     margin-bottom:40px;
 }
 
-.browse-card{
-    height:120px;
-    border-radius:16px;
-    padding:18px;
+.search-card{
+    background:#181818;
+    border-radius:12px;
+    padding:15px;
     cursor:pointer;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-
-    background:linear-gradient(135deg,#1DB954,#15883e);
-
     transition:.3s;
-
-    overflow:hidden;
-
-    position:relative;
 }
 
-.browse-card:nth-child(2){
-    background:linear-gradient(135deg,#e13300,#b91c1c);
+.search-card:hover{
+    background:#282828;
+    transform:translateY(-5px);
 }
 
-.browse-card:nth-child(3){
-    background:linear-gradient(135deg,#8b5cf6,#6d28d9);
+.search-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
-.browse-card:nth-child(4){
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-}
-
-.browse-card:nth-child(5){
-    background:linear-gradient(135deg,#f59e0b,#d97706);
-}
-
-.browse-card:nth-child(6){
-    background:linear-gradient(135deg,#ec4899,#be185d);
-}
-
-.browse-card:hover{
-    transform:translateY(-5px) scale(1.03);
-    box-shadow:0 15px 30px rgba(0,0,0,.35);
-}
-
-.browse-card span{
-    font-size:42px;
-}
-
-.browse-card h3{
-    font-size:20px;
-    font-weight:700;
+.search-card h4{
+    margin:15px 0 6px;
     color:#fff;
-}
-
-/* ==========================================
-   RESULT HEADER
-========================================== */
-
-.result-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.result-header h2{
-    font-size:28px;
-    font-weight:700;
-}
-
-.result-header span{
-    color:#b3b3b3;
-    font-size:14px;
-}
-
-/* ==========================================
-   SEARCH RESULT
-========================================== */
-
-.search-result{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-
-/* ==========================================
-   NO RESULT
-========================================== */
-
-.no-result{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    margin-top:80px;
-    padding:40px 20px;
-}
-
-.no-result-icon{
-    font-size:70px;
-    margin-bottom:20px;
-}
-
-.no-result h2{
-    font-size:30px;
-    margin-bottom:10px;
-    color:#fff;
-}
-
-.no-result p{
-    color:#b3b3b3;
-    font-size:16px;
-    max-width:400px;
-}
-
-/* ==========================================
-   SCROLLBAR
-========================================== */
-
-.search-page::-webkit-scrollbar{
-    width:8px;
-}
-
-.search-page::-webkit-scrollbar-thumb{
-    background:#3b3b3b;
-    border-radius:20px;
-}
-
-.search-page::-webkit-scrollbar-thumb:hover{
-    background:#1DB954;
-}
-
-/* ==========================================
-   TABLET
-========================================== */
-
-@media (max-width:992px){
-
-.search-page{
-    padding:25px;
-}
-
-.search-header h1{
-    font-size:36px;
-}
-
-.browse-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width:768px){
-
-.search-page{
-    padding:20px;
-}
-
-.search-header h1{
-    font-size:30px;
-}
-
-.search-header p{
-    font-size:14px;
-}
-
-.search-box input{
-    padding:13px 18px 13px 50px;
-    font-size:15px;
-}
-
-.search-icon{
-    left:16px;
-    font-size:20px;
-}
-
-.browse-grid{
-    grid-template-columns:1fr;
-    gap:15px;
-}
-
-.browse-card{
-    height:100px;
-}
-
-.browse-card span{
-    font-size:34px;
-}
-
-.browse-card h3{
     font-size:18px;
+    font-weight:600;
 }
 
-.result-header{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:8px;
-}
-
-.no-result{
-    margin-top:50px;
-}
-
-.no-result-icon{
-    font-size:55px;
-}
-
-.no-result h2{
-    font-size:24px;
-}
-
-.no-result p{
+.search-card p{
+    color:#b3b3b3;
     font-size:14px;
 }
 
-}
+/* Tablet */
 
-/* ==========================================
-   SMALL MOBILE
-========================================== */
+@media(max-width:768px){
 
-@media (max-width:480px){
+    .search-page{
+        padding:20px;
+    }
 
-.search-page{
-    padding:15px;
-}
+    .search-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.search-header h1{
-    font-size:26px;
-}
+    .search-card img{
+        height:150px;
+    }
 
-.search-box input{
-    font-size:14px;
-}
-
-.browse-card{
-    padding:15px;
-    height:90px;
-}
-
-.browse-card span{
-    font-size:28px;
-}
-
-.browse-card h3{
-    font-size:16px;
-}
+    .search-page h2{
+        font-size:24px;
+    }
 
 }
 
-/* ==========================================
-   ANIMATION
-========================================== */
+/* Mobile */
 
-.browse-card,
-.search-result,
-.no-result{
-    animation:fadeUp .4s ease;
-}
+@media(max-width:480px){
 
-@keyframes fadeUp{
+    .search-input{
+        height:48px;
+        font-size:15px;
+    }
 
-from{
-    opacity:0;
-    transform:translateY(20px);
-}
+    .search-grid{
+        grid-template-columns:1fr;
+    }
 
-to{
-    opacity:1;
-    transform:translateY(0);
-}
+    .search-card img{
+        height:200px;
+    }
 
-}
+    .search-page h2{
+        font-size:22px;
+    }
 
-/* ==========================================
-   SELECTION
-========================================== */
-
-::selection{
-    background:#1DB954;
-    color:#fff;
 }

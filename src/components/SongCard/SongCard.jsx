@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SongCard.css";
+
 import {
   FaPlay,
   FaHeart,
@@ -11,8 +12,8 @@ import { usePlayer } from "../../context/PlayerContext";
 
 const SongCard = ({ song }) => {
   const {
-    songs,
     playSong,
+    songs,
     playlists = [],
     addSongToPlaylist,
     likedSongs,
@@ -21,13 +22,25 @@ const SongCard = ({ song }) => {
 
   const [showPlaylist, setShowPlaylist] = useState(false);
 
+  // ==========================
+  // Play Song
+  // ==========================
+
   const handlePlay = () => {
-    const index = songs.findIndex((item) => item.id === song.id);
+
+    const index = songs.findIndex(
+      (item) => item.id === song.id
+    );
 
     if (index !== -1) {
       playSong(index);
     }
+
   };
+
+  // ==========================
+  // Check Liked
+  // ==========================
 
   const isLiked = likedSongs.some(
     (item) => item.id === song.id
@@ -35,8 +48,11 @@ const SongCard = ({ song }) => {
 
   return (
     <div className="song-card">
+
       {/* Left */}
+
       <div className="song-left">
+
         <img
           src={song.image}
           alt={song.title}
@@ -44,24 +60,40 @@ const SongCard = ({ song }) => {
         />
 
         <div className="song-info">
+
           <h4>{song.title}</h4>
+
           <p>{song.artist}</p>
+
         </div>
+
       </div>
 
       {/* Right */}
+
       <div className="song-actions">
 
         {/* Like */}
+
         <button
-          className={`icon-btn ${isLiked ? "liked" : ""}`}
-          onClick={() => toggleLike(song)}
+          className={`icon-btn ${
+            isLiked ? "liked" : ""
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleLike(song);
+          }}
           title="Like Song"
         >
-          {isLiked ? <FaHeart /> : <FaRegHeart />}
+          {isLiked ? (
+            <FaHeart />
+          ) : (
+            <FaRegHeart />
+          )}
         </button>
 
-        {/* Add Playlist */}
+        {/* Playlist */}
+
         <button
           className="icon-btn"
           title="Add To Playlist"
@@ -74,10 +106,11 @@ const SongCard = ({ song }) => {
         </button>
 
         {/* Play */}
+
         <button
           className="play-btn"
           onClick={handlePlay}
-          title="Play"
+          title="Play Song"
         >
           <FaPlay />
         </button>
@@ -85,7 +118,9 @@ const SongCard = ({ song }) => {
       </div>
 
       {/* Playlist Popup */}
+
       {showPlaylist && (
+
         <div className="playlist-popup">
 
           <div className="playlist-popup-title">
@@ -106,8 +141,14 @@ const SongCard = ({ song }) => {
                 key={playlist.id}
                 className="playlist-item"
                 onClick={() => {
-                  addSongToPlaylist(playlist.id, song);
+
+                  addSongToPlaylist(
+                    playlist.id,
+                    song
+                  );
+
                   setShowPlaylist(false);
+
                 }}
               >
                 🎵 {playlist.name}
@@ -118,7 +159,9 @@ const SongCard = ({ song }) => {
           )}
 
         </div>
+
       )}
+
     </div>
   );
 };

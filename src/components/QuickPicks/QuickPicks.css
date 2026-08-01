@@ -1,0 +1,256 @@
+/* ====================================
+   QUICK PICKS
+==================================== */
+
+.quick-picks{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+    margin:30px 0 45px;
+
+}
+
+/* ====================================
+   CARD
+==================================== */
+
+.quick-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:#181818;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    height:82px;
+
+    position:relative;
+
+}
+
+.quick-card:hover{
+
+    background:#2a2a2a;
+
+    transform:translateY(-3px);
+
+}
+
+.quick-card::after{
+
+    content:"▶";
+
+    position:absolute;
+
+    right:18px;
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:#1DB954;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    opacity:0;
+
+    transform:translateY(10px);
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+
+}
+
+.quick-card:hover::after{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* ====================================
+   IMAGE
+==================================== */
+
+.quick-card img{
+
+    width:82px;
+
+    height:82px;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+}
+
+/* ====================================
+   TEXT
+==================================== */
+
+.quick-info{
+
+    flex:1;
+
+    overflow:hidden;
+
+}
+
+.quick-info h4{
+
+    color:#fff;
+
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.quick-info p{
+
+    margin-top:6px;
+
+    color:#b3b3b3;
+
+    font-size:13px;
+
+}
+
+/* ====================================
+   TABLET
+==================================== */
+
+@media(max-width:992px){
+
+.quick-picks{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.quick-card{
+
+height:72px;
+
+}
+
+.quick-card img{
+
+width:72px;
+height:72px;
+
+}
+
+.quick-info h4{
+
+font-size:17px;
+
+}
+
+}
+
+/* ====================================
+   MOBILE
+==================================== */
+
+@media(max-width:768px){
+
+.quick-picks{
+
+grid-template-columns:1fr;
+
+}
+
+.quick-card{
+
+height:68px;
+
+}
+
+.quick-card img{
+
+width:68px;
+height:68px;
+
+}
+
+.quick-info h4{
+
+font-size:16px;
+
+}
+
+.quick-info p{
+
+display:none;
+
+}
+
+}
+
+/* ====================================
+   SMALL MOBILE
+==================================== */
+
+@media(max-width:480px){
+
+.quick-card{
+
+height:62px;
+
+}
+
+.quick-card img{
+
+width:62px;
+height:62px;
+
+}
+
+.quick-info h4{
+
+font-size:14px;
+
+}
+
+.quick-card::after{
+
+display:none;
+
+}
+
+}

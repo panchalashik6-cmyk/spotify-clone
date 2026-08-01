@@ -1,182 +1,133 @@
 import React, { useState } from "react";
 import "./Search.css";
 
-import { IoSearch } from "react-icons/io5";
-
 import songs from "../../data/songs";
-import SongCard from "../../components/SongCard/SongCard";
+import albums from "../../data/albums";
+import artists from "../../data/artists";
+
+import { useNavigate } from "react-router-dom";
+import { usePlayer } from "../../context/PlayerContext";
 
 const Search = () => {
-
   const [search, setSearch] = useState("");
+
+  const navigate = useNavigate();
+  const { playSong } = usePlayer();
 
   const filteredSongs = songs.filter(
     (song) =>
-      song.title.toLowerCase().includes(search.toLowerCase()) ||
-      song.artist.toLowerCase().includes(search.toLowerCase())
+      song.title
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      song.artist
+        .toLowerCase()
+        .includes(search.toLowerCase())
   );
 
-  const categories = [
-    {
-      id:1,
-      title:"Music",
-      icon:"🎵",
-    },
-    {
-      id:2,
-      title:"Albums",
-      icon:"💿",
-    },
-    {
-      id:3,
-      title:"Artists",
-      icon:"🎤",
-    },
-    {
-      id:4,
-      title:"Podcasts",
-      icon:"🎙️",
-    },
-    {
-      id:5,
-      title:"Trending",
-      icon:"🔥",
-    },
-    {
-      id:6,
-      title:"Liked Songs",
-      icon:"❤️",
-    },
-  ];
+  const filteredAlbums = albums.filter(
+    (album) =>
+      album.title
+        .toLowerCase()
+        .includes(search.toLowerCase())
+  );
+
+  const filteredArtists = artists.filter(
+    (artist) =>
+      artist.name
+        .toLowerCase()
+        .includes(search.toLowerCase())
+  );
 
   return (
-
     <div className="search-page">
 
-      {/* Header */}
+      <input
+        type="text"
+        placeholder="Search Songs, Albums, Artists..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="search-input"
+      />
 
-      <div className="search-header">
+      {/* Songs */}
 
-        <h1>Search</h1>
+      <h2>Songs</h2>
 
-        <p>
-          Find your favourite songs, artists and albums.
-        </p>
+      <div className="search-grid">
+
+        {filteredSongs.map((song) => (
+
+          <div
+            key={song.id}
+            className="search-card"
+            onClick={() => playSong(song.id)}
+          >
+
+            <img src={song.image} alt={song.title} />
+
+            <h4>{song.title}</h4>
+
+            <p>{song.artist}</p>
+
+          </div>
+
+        ))}
 
       </div>
 
-      {/* Search Box */}
+      {/* Albums */}
 
-      <div className="search-box">
+      <h2>Albums</h2>
 
-        <IoSearch className="search-icon" />
+      <div className="search-grid">
 
-        <input
-          type="text"
-          placeholder="What do you want to listen to?"
-          value={search}
-          onChange={(e)=>setSearch(e.target.value)}
-        />
+        {filteredAlbums.map((album) => (
+
+          <div
+            key={album.id}
+            className="search-card"
+            onClick={() => navigate(`/album/${album.id}`)}
+          >
+
+            <img src={album.image} alt={album.title} />
+
+            <h4>{album.title}</h4>
+
+            <p>{album.artist}</p>
+
+          </div>
+
+        ))}
 
       </div>
 
-      {/* Browse Categories */}
+      {/* Artists */}
 
-      {search === "" && (
+      <h2>Artists</h2>
 
-        <>
+      <div className="search-grid">
 
-          <h2 className="browse-title">
-            Browse All
-          </h2>
+        {filteredArtists.map((artist) => (
 
-          <div className="browse-grid">
+          <div
+            key={artist.id}
+            className="search-card"
+            onClick={() => navigate(`/artist/${artist.id}`)}
+          >
 
-            {categories.map((item)=>(
+            <img src={artist.image} alt={artist.name} />
 
-              <div
-                className="browse-card"
-                key={item.id}
-              >
+            <h4>{artist.name}</h4>
 
-                <span>
-                  {item.icon}
-                </span>
-
-                <h3>
-                  {item.title}
-                </h3>
-
-              </div>
-
-            ))}
+            <p>Artist</p>
 
           </div>
 
-        </>
+        ))}
 
-      )}
-
-            {/* ==========================
-          SEARCH RESULTS
-      ========================== */}
-
-      {search !== "" && (
-
-        <>
-
-          <div className="result-header">
-
-            <h2>
-              Search Results
-            </h2>
-
-            <span>
-              {filteredSongs.length} Result
-              {filteredSongs.length !== 1 && "s"}
-            </span>
-
-          </div>
-
-          <div className="search-result">
-
-            {filteredSongs.length > 0 ? (
-
-              filteredSongs.map((song) => (
-
-                <SongCard
-                  key={song.id}
-                  song={song}
-                />
-
-              ))
-
-            ) : (
-
-              <div className="no-result">
-
-                <div className="no-result-icon">
-                  🎵
-                </div>
-
-                <h2>No Songs Found</h2>
-
-                <p>
-                  Try searching with a different song or artist name.
-                </p>
-
-              </div>
-
-            )}
-
-          </div>
-
-        </>
-
-      )}
+      </div>
 
     </div>
-
   );
 };
 

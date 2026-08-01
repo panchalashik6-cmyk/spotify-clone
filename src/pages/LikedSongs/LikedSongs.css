@@ -1,202 +1,143 @@
-/* ==========================================
-   LIKED SONGS PAGE
-========================================== */
-
 .liked-page{
-    flex:1;
+    width:100%;
     min-height:100vh;
-    padding:30px;
+    background:#121212;
     color:#fff;
-    overflow-y:auto;
-    background:linear-gradient(
-        180deg,
-        #5b21b6 0%,
-        #3b1d72 20%,
-        #181818 55%,
-        #121212 100%
-    );
+    padding:30px;
 }
 
-/* ==========================================
-   HEADER
-========================================== */
+/* Header */
 
 .liked-header{
     display:flex;
-    align-items:flex-end;
-    gap:30px;
-    margin-bottom:40px;
+    align-items:end;
+    gap:25px;
+    padding:40px 20px;
+    background:linear-gradient(180deg,#5b21b6,#121212);
+    border-radius:15px;
+    margin-bottom:30px;
 }
 
-.liked-cover{
-    width:220px;
-    height:220px;
+.liked-icon{
+    width:180px;
+    height:180px;
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:90px;
-    color:white;
-    border-radius:12px;
-    background:linear-gradient(
-        135deg,
-        #7c3aed,
-        #2563eb
-    );
-    box-shadow:0 20px 40px rgba(0,0,0,.45);
+    align-items:center;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.liked-icon svg{
+    font-size:80px;
+    color:#fff;
 }
 
 .liked-header p{
+    margin:0;
     color:#ddd;
-    font-size:14px;
-    text-transform:uppercase;
-    margin-bottom:10px;
+    font-size:15px;
 }
 
 .liked-header h1{
-    font-size:62px;
-    font-weight:800;
-    margin-bottom:15px;
+    margin:10px 0;
+    font-size:60px;
+    font-weight:700;
 }
 
 .liked-header span{
     color:#b3b3b3;
-    font-size:16px;
+    font-size:15px;
 }
 
-/* ==========================================
-   SONG LIST
-========================================== */
+/* Empty */
 
-.liked-list{
+.empty-liked{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    justify-content:center;
+    align-items:center;
+    height:300px;
+    color:#b3b3b3;
+    text-align:center;
 }
+
+.empty-liked h2{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+/* Song */
 
 .liked-song{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:14px 18px;
-    border-radius:12px;
+    padding:15px 20px;
+    border-radius:10px;
     transition:.3s;
-    cursor:pointer;
 }
 
 .liked-song:hover{
-    background:#282828;
+    background:#1f1f1f;
 }
 
-.liked-song-info{
+.liked-info{
     display:flex;
     align-items:center;
     gap:18px;
+    cursor:pointer;
     flex:1;
 }
 
-.liked-song-info img{
+.liked-info img{
     width:60px;
     height:60px;
     border-radius:8px;
     object-fit:cover;
 }
 
-.liked-song-info h3{
-    font-size:18px;
-    font-weight:600;
+.liked-info h4{
+    margin:0;
     color:#fff;
-    margin-bottom:5px;
+    font-size:18px;
 }
 
-.liked-song-info p{
-    font-size:14px;
+.liked-info p{
+    margin-top:5px;
     color:#b3b3b3;
+    font-size:14px;
 }
 
-/* ==========================================
-   PLAY BUTTON
-========================================== */
+.liked-actions{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
 
-.play-song-btn{
-    width:48px;
-    height:48px;
+.liked-actions button{
+    width:45px;
+    height:45px;
     border:none;
     border-radius:50%;
-    background:#1DB954;
+    background:#282828;
     color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     cursor:pointer;
-    transition:.3s;
-    font-size:16px;
-}
-
-.play-song-btn:hover{
-    transform:scale(1.1);
-}
-
-/* ==========================================
-   EMPTY STATE
-========================================== */
-
-.empty-liked{
     display:flex;
-    flex-direction:column;
-    align-items:center;
     justify-content:center;
-    text-align:center;
-    margin-top:80px;
+    align-items:center;
+    transition:.3s;
 }
 
-.empty-icon{
-    font-size:70px;
-    color:#1DB954;
-    margin-bottom:20px;
+.liked-actions button:hover{
+    background:#1DB954;
+    transform:scale(1.08);
 }
 
-.empty-liked h2{
-    font-size:32px;
-    margin-bottom:10px;
-}
+/* Tablet */
 
-.empty-liked p{
-    color:#b3b3b3;
-    font-size:16px;
-    max-width:420px;
-}
-
-/* ==========================================
-   TABLET RESPONSIVE
-========================================== */
-
-@media (max-width:992px){
-
-    .liked-page{
-        padding:25px;
-    }
-
-    .liked-header{
-        gap:20px;
-    }
-
-    .liked-cover{
-        width:180px;
-        height:180px;
-        font-size:70px;
-    }
-
-    .liked-header h1{
-        font-size:48px;
-    }
-
-}
-
-/* ==========================================
-   MOBILE RESPONSIVE
-========================================== */
-
-@media (max-width:768px){
+@media(max-width:768px){
 
     .liked-page{
         padding:20px;
@@ -208,148 +149,56 @@
         text-align:center;
     }
 
-    .liked-cover{
-        width:180px;
-        height:180px;
-        font-size:70px;
+    .liked-icon{
+        width:150px;
+        height:150px;
     }
 
     .liked-header h1{
-        font-size:36px;
+        font-size:42px;
     }
 
     .liked-song{
-        padding:12px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
     }
 
-    .liked-song-info{
-        gap:12px;
+    .liked-actions{
+        width:100%;
+        justify-content:flex-end;
     }
 
-    .liked-song-info img{
+}
+
+/* Mobile */
+
+@media(max-width:480px){
+
+    .liked-header h1{
+        font-size:32px;
+    }
+
+    .liked-icon{
+        width:120px;
+        height:120px;
+    }
+
+    .liked-icon svg{
+        font-size:55px;
+    }
+
+    .liked-info img{
         width:50px;
         height:50px;
     }
 
-    .liked-song-info h3{
+    .liked-info h4{
         font-size:16px;
     }
 
-    .liked-song-info p{
-        font-size:13px;
-    }
-
-    .play-song-btn{
-        width:42px;
-        height:42px;
-        font-size:14px;
-    }
-
-}
-
-/* ==========================================
-   SMALL MOBILE
-========================================== */
-
-@media (max-width:480px){
-
-    .liked-page{
-        padding:15px;
-    }
-
-    .liked-cover{
-        width:150px;
-        height:150px;
-        font-size:60px;
-    }
-
-    .liked-header h1{
-        font-size:28px;
-    }
-
-    .liked-song-info img{
-        width:45px;
-        height:45px;
-    }
-
-    .liked-song-info h3{
-        font-size:15px;
-    }
-
-    .liked-song-info p{
+    .liked-info p{
         font-size:12px;
     }
 
-    .play-song-btn{
-        width:38px;
-        height:38px;
-        font-size:13px;
-    }
-
-}
-
-/* ==========================================
-   SCROLLBAR
-========================================== */
-
-.liked-page::-webkit-scrollbar{
-    width:8px;
-}
-
-.liked-page::-webkit-scrollbar-thumb{
-    background:#3a3a3a;
-    border-radius:20px;
-}
-
-.liked-page::-webkit-scrollbar-thumb:hover{
-    background:#1DB954;
-}
-
-/* ==========================================
-   ANIMATION
-========================================== */
-
-.liked-header{
-    animation:fadeDown .5s ease;
-}
-
-.liked-song{
-    animation:fadeUp .4s ease;
-}
-
-@keyframes fadeDown{
-
-    from{
-        opacity:0;
-        transform:translateY(-20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-@keyframes fadeUp{
-
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-/* ==========================================
-   TEXT SELECTION
-========================================== */
-
-::selection{
-    background:#1DB954;
-    color:#fff;
 }

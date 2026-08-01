@@ -1,6 +1,5 @@
 import React from "react";
 import "./Album.css";
-
 import { useParams } from "react-router-dom";
 import { FaPlay, FaHeart, FaClock } from "react-icons/fa";
 
@@ -14,10 +13,8 @@ const Album = () => {
 
   const { playSong } = usePlayer();
 
-  // Find Selected Album
-  const album = albums.find(
-    (item) => item.id === Number(id)
-  );
+  // Selected Album
+  const album = albums.find((item) => item.id === Number(id));
 
   // Album Not Found
   if (!album) {
@@ -28,28 +25,28 @@ const Album = () => {
     );
   }
 
-  // Songs of Selected Album
-  const albumSongs = songs.filter((song) =>
-    album.songs.includes(song.id)
+  // Album Songs
+  const albumSongs = songs.filter(
+    (song) => song.albumId === Number(id)
   );
 
-  // Play First Song
+  // Play Album
   const handlePlayAlbum = () => {
-    if (albumSongs.length > 0) {
-      const songIndex = songs.findIndex(
-        (item) => item.id === albumSongs[0].id
-      );
+    if (albumSongs.length === 0) return;
 
-      if (songIndex !== -1) {
-        playSong(songIndex);
-      }
+    const firstSongIndex = songs.findIndex(
+      (song) => song.id === albumSongs[0].id
+    );
+
+    if (firstSongIndex !== -1) {
+      playSong(firstSongIndex);
     }
   };
 
   return (
     <div className="album-page">
 
-      {/* Album Header */}
+      {/* Header */}
 
       <div className="album-header">
 
@@ -61,9 +58,7 @@ const Album = () => {
 
         <div className="album-info">
 
-          <p className="album-type">
-            Album
-          </p>
+          <p className="album-type">Album</p>
 
           <h1 className="album-title">
             {album.title}
@@ -74,9 +69,9 @@ const Album = () => {
           </p>
 
           <div className="album-meta">
-            <span>🎵 {albumSongs.length} Songs</span>
+            <span>{album.year}</span>
             <span> • </span>
-            <span>2026</span>
+            <span>{albumSongs.length} Songs</span>
           </div>
 
           <div className="album-actions">
@@ -86,7 +81,7 @@ const Album = () => {
               onClick={handlePlayAlbum}
             >
               <FaPlay />
-              Play
+              <span>Play</span>
             </button>
 
             <button className="like-btn">
@@ -99,7 +94,7 @@ const Album = () => {
 
       </div>
 
-      {/* Song List */}
+      {/* Song Heading */}
 
       <div className="song-table">
 
@@ -116,6 +111,8 @@ const Album = () => {
           </span>
 
         </div>
+
+        {/* Song List */}
 
         {albumSongs.map((song, index) => {
 
@@ -158,13 +155,25 @@ const Album = () => {
               </span>
 
               <span className="song-duration">
-                3:25
+                {song.duration}
               </span>
 
             </div>
 
           );
         })}
+
+        {albumSongs.length === 0 && (
+          <div
+            style={{
+              color: "#b3b3b3",
+              textAlign: "center",
+              padding: "40px",
+            }}
+          >
+            No songs available in this album.
+          </div>
+        )}
 
       </div>
 

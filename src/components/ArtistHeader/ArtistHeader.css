@@ -1,0 +1,76 @@
+
+.artist-header{
+    height:430px;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+}
+
+.artist-overlay{
+    width:100%;
+    padding:50px;
+    background:linear-gradient(
+        rgba(0,0,0,.15),
+        rgba(0,0,0,.92)
+    );
+}
+
+.artist-image{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid white;
+}
+
+.verified{
+    color:#1db954;
+    display:flex;
+    gap:8px;
+    margin-top:20px;
+    align-items:center;
+}
+
+.artist-overlay h1{
+    font-size:64px;
+    margin:10px 0;
+}
+
+.artist-overlay p{
+    color:#d1d5db;
+}
+
+.artist-actions{
+    margin-top:25px;
+    display:flex;
+    gap:15px;
+}
+
+.play-btn{
+    background:#1db954;
+    color:white;
+    border:none;
+    padding:14px 35px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.follow-btn{
+    background:transparent;
+    border:2px solid white;
+    color:white;
+    padding:14px 35px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.following-btn{
+    background:white;
+    color:black;
+    border:none;
+    padding:14px 35px;
+    border-radius:30px;
+    cursor:pointer;
+}

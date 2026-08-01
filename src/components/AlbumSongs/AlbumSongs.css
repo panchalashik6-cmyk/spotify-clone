@@ -1,0 +1,156 @@
+.album-songs{
+    width:100%;
+    padding:30px;
+    color:#fff;
+}
+
+.album-song-header{
+    display:grid;
+    grid-template-columns:60px 3fr 2fr 120px 120px;
+    align-items:center;
+    padding:12px 20px;
+    color:#b3b3b3;
+    font-size:14px;
+    border-bottom:1px solid #2a2a2a;
+    margin-bottom:10px;
+}
+
+.album-song-row{
+    display:grid;
+    grid-template-columns:60px 3fr 2fr 120px 120px;
+    align-items:center;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.album-song-row:hover{
+    background:#1f1f1f;
+}
+
+.song-index{
+    color:#b3b3b3;
+    font-size:15px;
+}
+
+.album-song-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.album-song-info img{
+    width:55px;
+    height:55px;
+    border-radius:8px;
+    object-fit:cover;
+}
+
+.album-song-info h4{
+    margin:0;
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+}
+
+.album-song-info p{
+    margin-top:5px;
+    color:#b3b3b3;
+    font-size:14px;
+}
+
+.song-time{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:18px;
+}
+
+.song-time svg{
+    color:#b3b3b3;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.song-time svg:hover{
+    color:#1db954;
+}
+
+.song-play-btn{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:#1db954;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    opacity:0;
+    transition:.3s;
+}
+
+.album-song-row:hover .song-play-btn{
+    opacity:1;
+}
+
+.song-play-btn:hover{
+    transform:scale(1.1);
+}
+
+@media(max-width:992px){
+
+    .album-song-header,
+    .album-song-row{
+        grid-template-columns:40px 3fr 1.5fr 80px 90px;
+        gap:10px;
+    }
+
+    .album-song-info img{
+        width:45px;
+        height:45px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .album-song-header{
+        display:none;
+    }
+
+    .album-song-row{
+        grid-template-columns:40px 1fr;
+        gap:15px;
+    }
+
+    .album-song-row > span:nth-child(3),
+    .album-song-row > span:nth-child(4),
+    .song-time{
+        display:none;
+    }
+
+    .album-song-info img{
+        width:50px;
+        height:50px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .album-songs{
+        padding:15px;
+    }
+
+    .album-song-info h4{
+        font-size:15px;
+    }
+
+    .album-song-info p{
+        font-size:12px;
+    }
+
+}

@@ -1,0 +1,68 @@
+.album-header{
+
+    display:flex;
+
+    align-items:end;
+
+    gap:35px;
+
+    padding:40px;
+
+    background:linear-gradient(
+        #6a4c93,
+        #121212
+    );
+
+}
+
+.album-header img{
+
+    width:240px;
+
+    height:240px;
+
+    border-radius:12px;
+
+    object-fit:cover;
+
+}
+
+.album-info h1{
+
+    color:white;
+
+    font-size:64px;
+
+    margin:15px 0;
+
+}
+
+.album-info p{
+
+    color:#ddd;
+
+}
+
+.album-play-btn{
+
+    margin-top:20px;
+
+    background:#1db954;
+
+    color:white;
+
+    border:none;
+
+    padding:14px 40px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+}
