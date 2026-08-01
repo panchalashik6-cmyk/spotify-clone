@@ -1,9 +1,9 @@
 import React,{
   useRef,
   useEffect,
-  useState
+  useState,
+  useCallback
 } from "react";
-
 import "./MusicPlayer.css";
 
 import{
@@ -94,24 +94,18 @@ return`${min}:${sec<10?"0":""}${sec}`;
 // PLAY / PAUSE
 // ======================
 
-const togglePlay=()=>{
+const togglePlay = useCallback(() => {
 
-if(!audioRef.current)return;
+  if (!audioRef.current) return;
 
-if(isPlaying){
+  if (isPlaying) {
+    audioRef.current.pause();
+    pauseSong();
+  } else {
+    playSong(currentIndex);
+  }
 
-audioRef.current.pause();
-
-pauseSong();
-
-}else{
-
-playSong(currentIndex);
-
-}
-
-};
-
+}, [isPlaying, pauseSong, playSong, currentIndex]);
 // ======================
 // AUTO PLAY
 // ======================
@@ -220,82 +214,61 @@ audioRef.current.volume=value/100;
   // INITIAL VOLUME
   // ======================
 
-  useEffect(() => {
+ useEffect(() => {
 
-    if (audioRef.current) {
+  if (audioRef.current) {
+    audioRef.current.volume = volume / 100;
+  }
 
-      audioRef.current.volume =
-        volume / 100;
-
-    }
-
-  }, []);
-
+}, [volume]);
   // ======================
   // KEYBOARD SHORTCUTS
   // ======================
 
-  useEffect(() => {
+ useEffect(() => {
 
-    const handleKey = (e) => {
+  const handleKey = (e) => {
 
-      if (
-        e.target.tagName === "INPUT" ||
-        e.target.tagName === "TEXTAREA"
-      ) {
-        return;
-      }
+    if (
+      e.target.tagName === "INPUT" ||
+      e.target.tagName === "TEXTAREA"
+    ) {
+      return;
+    }
 
-      switch (e.code) {
+    switch (e.code) {
 
-        case "Space":
+      case "Space":
+        e.preventDefault();
+        togglePlay();
+        break;
 
-          e.preventDefault();
+      case "ArrowRight":
+        nextSong();
+        break;
 
-          togglePlay();
+      case "ArrowLeft":
+        previousSong();
+        break;
 
-          break;
+      default:
+        break;
 
-        case "ArrowRight":
+    }
 
-          nextSong();
+  };
 
-          break;
+  window.addEventListener("keydown", handleKey);
 
-        case "ArrowLeft":
+  return () => {
+    window.removeEventListener("keydown", handleKey);
+  };
 
-          previousSong();
-
-          break;
-
-        default:
-
-          break;
-
-      }
-
-    };
-
-    window.addEventListener(
-      "keydown",
-      handleKey
-    );
-
-    return () => {
-
-      window.removeEventListener(
-        "keydown",
-        handleKey
-      );
-
-    };
-
-  }, [
-    currentSong,
-    currentIndex,
-    isPlaying,
-  ]);
-
+}, [
+  togglePlay,
+  nextSong,
+  previousSong,
+]);
   // ======================
   // NO SONG
   // ======================
